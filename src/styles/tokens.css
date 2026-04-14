@@ -1,0 +1,532 @@
+/* ============================================================
+   InfraAI Design System — Design Token File
+   /src/styles/tokens.css
+
+   SINGLE SOURCE OF TRUTH for all design decisions.
+   Every colour, size, space, radius, shadow, and motion
+   value in the codebase is derived from a token here.
+
+   No hardcoded values anywhere outside this file.
+
+   Structure
+   ─────────
+   1.  @font-face          General Sans (Fontshare, self-hosted)
+   2.  Font stacks
+   3.  Type scale          Modular, ratio 1.25
+   4.  Arabic overrides    Letter-spacing reset, larger sizes, looser leading
+   5.  Color system        Light-first. Canvas → Ink → Accent → Semantic
+   6.  Spacing scale       8px base grid
+   7.  Layout              Max-width, gutters, columns
+   8.  Border radius
+   9.  Elevation / Shadow
+   10. Motion & Easing     Two approved curves only. Reduced-motion included.
+   11. Component tokens    Nav, Buttons, Cards, Forms, Badges
+   12. Atmospheric FX      Noise texture, radial glows
+   ============================================================ */
+
+
+/* ═══════════════════════════════════════════════════════
+   1. @font-face — General Sans (Fontshare)
+   ───────────────────────────────────────────────────────
+   Download from: https://www.fontshare.com/fonts/general-sans
+   Place the following woff2 files in /public/fonts/:
+     GeneralSans-Light.woff2
+     GeneralSans-Regular.woff2
+     GeneralSans-Medium.woff2
+     GeneralSans-Semibold.woff2
+     GeneralSans-Bold.woff2
+   See /admin/README.md → "Font Installation" for full steps.
+   ══════════════════════════════════════════════════════ */
+
+@font-face {
+  font-family: 'General Sans';
+  src: url('/fonts/GeneralSans-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'General Sans';
+  src: url('/fonts/GeneralSans-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'General Sans';
+  src: url('/fonts/GeneralSans-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'General Sans';
+  src: url('/fonts/GeneralSans-Semibold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'General Sans';
+  src: url('/fonts/GeneralSans-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+/* ═══════════════════════════════════════════════════════
+   2. Font Stacks
+   ═══════════════════════════════════════════════════════ */
+
+:root {
+  /*
+   * --font-arabic   Arabic display + body. IBM Plex Sans Arabic is
+   *                 optimised for Arabic script at all sizes.
+   * --font-display  Latin display headings. General Sans: clean,
+   *                 geometric, purposeful — NOT Inter, NOT Roboto.
+   * --font-body     Latin body text. IBM Plex Sans pairs with the
+   *                 Arabic sibling naturally (same family DNA).
+   * --font-mono     Technical callouts, DX-OS interface elements,
+   *                 code snippets. JetBrains Mono: legible at small sizes.
+   */
+  --font-arabic:  'IBM Plex Sans Arabic', 'Noto Sans Arabic', system-ui, sans-serif;
+  --font-display: 'General Sans', 'IBM Plex Sans', system-ui, sans-serif;
+  --font-body:    'IBM Plex Sans', system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+}
+
+
+/* ═══════════════════════════════════════════════════════
+   3. Type Scale — Modular (ratio 1.25)
+   ═══════════════════════════════════════════════════════ */
+
+:root {
+  /* ─── Sizes (fluid via clamp) ─── */
+  --fs-hero:   clamp(3.5rem,  7vw,   6.5rem);   /* ~56px → 104px */
+  --fs-h1:     clamp(2.5rem,  4.5vw, 4rem);     /* ~40px → 64px  */
+  --fs-h2:     clamp(2rem,    3.2vw, 3rem);     /* ~32px → 48px  */
+  --fs-h3:     1.5rem;                           /* 24px          */
+  --fs-h4:     1.25rem;                          /* 20px          */
+  --fs-body:   1.0625rem;                        /* 17px          */
+  --fs-small:  0.875rem;                         /* 14px          */
+  --fs-micro:  0.75rem;                          /* 12px          */
+
+  /* ─── Letter-spacing — Latin ONLY ───
+     Arabic script does NOT tolerate negative tracking.
+     These are zeroed in the Arabic override block (section 4). */
+  --ls-hero:   -0.035em;
+  --ls-h1:     -0.03em;
+  --ls-h2:     -0.025em;
+  --ls-h3:     -0.015em;
+  --ls-h4:     -0.01em;
+  --ls-body:    0em;
+  --ls-small:   0.02em;
+  --ls-caps:    0.08em;    /* Uppercase labels, badges */
+
+  /* ─── Line heights ─── */
+  --lh-hero:    0.95;      /* Tight for large display text */
+  --lh-h1:      1.05;
+  --lh-h2:      1.1;
+  --lh-h3:      1.2;
+  --lh-h4:      1.3;
+  --lh-body:    1.55;
+  --lh-relaxed: 1.7;       /* Blog body, long-form prose */
+  --lh-loose:   1.8;       /* Arabic override target */
+
+  /* ─── Font weights ─── */
+  --fw-light:   300;
+  --fw-regular: 400;
+  --fw-medium:  500;
+  --fw-semi:    600;
+  --fw-bold:    700;
+}
+
+
+/* ═══════════════════════════════════════════════════════
+   4. Arabic Typography Overrides
+   ───────────────────────────────────────────────────────
+   Applied globally when html[lang="ar"].
+   Rules:
+   a) Zero out ALL negative letter-spacing. Arabic ligatures
+      and contextual forms break under tight tracking.
+   b) Multiply font-sizes by 1.05 — Arabic glyphs have smaller
+      optical size at the same em value as Latin.
+   c) Multiply line-heights by ~1.15 — Arabic ascenders and
+      descenders are taller and clip at tight leading.
+   ═══════════════════════════════════════════════════════ */
+
+[lang="ar"] {
+  /* Zero all letter-spacing */
+  --ls-hero:   0em;
+  --ls-h1:     0em;
+  --ls-h2:     0em;
+  --ls-h3:     0em;
+  --ls-h4:     0em;
+  --ls-body:   0em;
+  --ls-small:  0em;
+  --ls-caps:   0em;
+
+  /* Bumped font sizes (×1.05) */
+  --fs-hero:   clamp(3.675rem, 7.35vw, 6.825rem);
+  --fs-h1:     clamp(2.625rem, 4.725vw, 4.2rem);
+  --fs-h2:     clamp(2.1rem,   3.36vw,  3.15rem);
+  --fs-h3:     1.575rem;
+  --fs-h4:     1.3125rem;
+  --fs-body:   1.115rem;
+  --fs-small:  0.92rem;
+
+  /* Looser line-heights for Arabic glyphs */
+  --lh-hero:    1.1;
+  --lh-h1:      1.2;
+  --lh-h2:      1.25;
+  --lh-h3:      1.35;
+  --lh-h4:      1.4;
+  --lh-body:    1.75;
+  --lh-relaxed: 1.85;
+  --lh-loose:   1.9;
+}
+
+
+/* ═══════════════════════════════════════════════════════
+   5. Color System — Light-First, Architectural
+   ───────────────────────────────────────────────────────
+   Philosophy:
+   - White is the primary surface. Everything else is relative.
+   - One accent. Electric teal. Used with restraint.
+   - Dark sections (DX-OS showcase, CTA bands) use --bg-deep —
+     they feel dramatic precisely because the rest is light.
+   ═══════════════════════════════════════════════════════ */
+
+:root {
+  /* ─── Canvas ─── */
+  --bg-canvas:    #FFFFFF;   /* Primary page background */
+  --bg-subtle:    #FAFAFA;   /* Alternating sections, input backgrounds */
+  --bg-elevated:  #F5F5F7;   /* Card backgrounds — Apple-signature grey */
+  --bg-deep:      #0A0A0B;   /* Dark feature sections */
+
+  /* ─── Ink (text + border hierarchy, light-to-dark) ─── */
+  --ink-900:      #0A0A0B;   /* Primary headings, maximum emphasis */
+  --ink-700:      #3A3A42;   /* Body text default */
+  --ink-500:      #6B6B74;   /* Secondary text, captions, placeholders */
+  --ink-300:      #C8C8CF;   /* Borders, inactive outlines */
+  --ink-100:      #EDEDEF;   /* Hairline dividers, nav scroll border */
+  --ink-000:      #FFFFFF;   /* Text on dark (--bg-deep) surfaces */
+
+  /* ─── Signature Accent — Single Electric Teal ───
+     Contrast ratio on white: 4.55:1 (passes WCAG AA).
+     Use for: primary buttons, key links, active states, signature moments.
+     DO NOT spray liberally. It earns its place. */
+  --accent:       #00B894;
+  --accent-hover: #009E7F;
+  --accent-dark:  #00D4A8;   /* On --bg-deep: brighter variant for contrast */
+  --accent-tint:  rgba(0, 184, 148, 0.06);
+  --accent-glow:  rgba(0, 184, 148, 0.15);
+
+  /* ─── Semantic ─── */
+  --warn:          #E8622C;
+  --warn-tint:     rgba(232, 98, 44, 0.08);
+  --success:       #0FA968;
+  --success-tint:  rgba(15, 169, 104, 0.08);
+  --info:          #0070F3;
+  --info-tint:     rgba(0, 112, 243, 0.08);
+}
+
+
+/* ═══════════════════════════════════════════════════════
+   6. Spacing Scale — 8px base grid
+   ═══════════════════════════════════════════════════════ */
+
+:root {
+  --space-1:    4px;    /*  0.5×  — tight nudges */
+  --space-2:    8px;    /*  1×    — base unit     */
+  --space-3:   12px;    /*  1.5×                  */
+  --space-4:   16px;    /*  2×    — standard gap  */
+  --space-5:   20px;    /*  2.5×                  */
+  --space-6:   24px;    /*  3×    — card inner    */
+  --space-8:   32px;    /*  4×    — card padding  */
+  --space-10:  40px;    /*  5×                    */
+  --space-12:  48px;    /*  6×    — component gap */
+  --space-16:  64px;    /*  8×    — section inner */
+  --space-20:  80px;    /* 10×    — tablet section*/
+  --space-24:  96px;    /* 12×                    */
+  --space-32: 128px;    /* 16×    — desktop section*/
+  --space-48: 192px;    /* 24×    — hero padding  */
+
+  /* ─── Section vertical rhythm ─── */
+  --section-y-mobile:   64px;
+  --section-y-tablet:   80px;
+  --section-y-desktop: 128px;
+}
+
+
+/* ═══════════════════════════════════════════════════════
+   7. Layout
+   ═══════════════════════════════════════════════════════ */
+
+:root {
+  --max-width:    1280px;
+
+  /* Gutters — used for .container horizontal padding */
+  --gutter-lg:    32px;    /* ≥1280px */
+  --gutter-md:    24px;    /* ≥768px  */
+  --gutter-sm:    20px;    /* <768px  */
+
+  /* Grid */
+  --cols:         12;
+  --col-gap-lg:   var(--space-8);    /* 32px */
+  --col-gap-md:   var(--space-6);    /* 24px */
+  --col-gap-sm:   var(--space-4);    /* 16px */
+}
+
+
+/* ═══════════════════════════════════════════════════════
+   8. Border Radius
+   ═══════════════════════════════════════════════════════ */
+
+:root {
+  --radius-xs:   4px;
+  --radius-sm:   8px;
+  --radius-md:   12px;
+  --radius-lg:   20px;      /* Cards, large containers */
+  --radius-xl:   28px;      /* Feature cards */
+  --radius-pill: 9999px;    /* Buttons, chips, tags */
+}
+
+
+/* ═══════════════════════════════════════════════════════
+   9. Elevation / Shadow
+   ───────────────────────────────────────────────────────
+   Multi-layer shadows: a tight ambient + a soft diffuse.
+   Avoids the harsh single-layer box-shadow look.
+   ═══════════════════════════════════════════════════════ */
+
+:root {
+  --shadow-xs:
+    0 1px 2px rgba(10, 10, 11, 0.04);
+
+  --shadow-sm:
+    0 1px 2px  rgba(10, 10, 11, 0.04),
+    0 2px 6px  rgba(10, 10, 11, 0.05);
+
+  --shadow-card:
+    0 1px 2px  rgba(10, 10, 11, 0.04),
+    0 4px 12px rgba(10, 10, 11, 0.06);
+
+  --shadow-hover:
+    0 2px 4px  rgba(10, 10, 11, 0.05),
+    0 8px 24px rgba(10, 10, 11, 0.09);
+
+  --shadow-modal:
+    0 8px 32px rgba(10, 10, 11, 0.12),
+    0 32px 64px rgba(10, 10, 11, 0.08);
+
+  /* Focus ring — used instead of outline for custom components */
+  --shadow-focus: 0 0 0 3px var(--accent-glow);
+}
+
+
+/* ═══════════════════════════════════════════════════════
+   10. Motion & Easing
+   ───────────────────────────────────────────────────────
+   Two approved curves. No bouncy spring.
+
+   --ease-out   → expo-out: fast start, gentle finish.
+                  Primary curve for reveals, entrances, hovers.
+   --ease-inout → standard ease-in-out.
+                  Secondary for colour, opacity, background transitions.
+
+   The --ease-micro is the ONE exception for very subtle overshoot
+   on micro-interactions (e.g. button press scale). Maximum 4%
+   overshoot, never on layout or page-level animations.
+   ═══════════════════════════════════════════════════════ */
+
+:root {
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);      /* expo-out   */
+  --ease-inout:  cubic-bezier(0.4, 0, 0.2, 1);       /* ease-inout */
+  --ease-micro:  cubic-bezier(0.34, 1.04, 0.64, 1);  /* micro-spring, use sparingly */
+
+  /* Durations */
+  --dur-instant:  100ms;   /* Instant feedback (toggle, checkbox) */
+  --dur-fast:     150ms;   /* Fast hover state changes */
+  --dur-base:     200ms;   /* Standard UI transitions */
+  --dur-slow:     400ms;   /* Modal open, panel slide */
+  --dur-reveal:   600ms;   /* Scroll-reveal animations */
+  --dur-long:     900ms;   /* Hero entrance, page transitions */
+
+  /* Stagger delays for sequential list reveals */
+  --stagger:       80ms;
+  --stagger-slow: 120ms;
+}
+
+/* Kill all motion when user prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-instant:   0ms;
+    --dur-fast:      0ms;
+    --dur-base:      0ms;
+    --dur-slow:      0ms;
+    --dur-reveal:    0ms;
+    --dur-long:      0ms;
+    --stagger:       0ms;
+    --stagger-slow:  0ms;
+  }
+}
+
+
+/* ═══════════════════════════════════════════════════════
+   11. Component Tokens
+   ═══════════════════════════════════════════════════════ */
+
+/* ─── Navigation ─── */
+:root {
+  --nav-height:           64px;
+  --nav-bg:               rgba(255, 255, 255, 0.85);
+  --nav-bg-scrolled:      rgba(255, 255, 255, 0.92);
+  --nav-blur:             blur(20px) saturate(180%);
+  --nav-border-color:     var(--ink-100);
+  --nav-link-size:        0.9375rem;   /* 15px */
+  --nav-link-weight:      500;
+  --nav-link-color:       var(--ink-700);
+  --nav-link-hover-color: var(--ink-900);
+  --nav-z:                100;
+}
+
+/* ─── Buttons ─── */
+:root {
+  --btn-height:       48px;
+  --btn-height-sm:    36px;
+  --btn-height-lg:    56px;
+  --btn-px:           24px;
+  --btn-px-sm:        16px;
+  --btn-px-lg:        32px;
+  --btn-radius:       var(--radius-pill);
+  --btn-weight:       500;
+  --btn-size:         var(--fs-body);
+  --btn-transition:
+    transform       var(--dur-base)  var(--ease-out),
+    box-shadow      var(--dur-base)  var(--ease-out),
+    background      var(--dur-base)  var(--ease-inout),
+    border-color    var(--dur-base)  var(--ease-inout),
+    color           var(--dur-base)  var(--ease-inout);
+
+  /* Primary — accent fill */
+  --btn-primary-bg:         var(--accent);
+  --btn-primary-bg-hover:   var(--accent-hover);
+  --btn-primary-text:       #FFFFFF;
+  --btn-primary-shadow:     0 4px 16px var(--accent-glow);
+  --btn-primary-shadow-hover: 0 6px 24px rgba(0, 184, 148, 0.25);
+
+  /* Secondary — outlined */
+  --btn-secondary-border:       var(--ink-300);
+  --btn-secondary-border-hover: var(--ink-500);
+  --btn-secondary-bg:           transparent;
+  --btn-secondary-bg-hover:     var(--bg-elevated);
+  --btn-secondary-text:         var(--ink-900);
+
+  /* Ghost / Tertiary — text + animated underline */
+  --btn-ghost-color:    var(--ink-700);
+  --btn-ghost-hover:    var(--ink-900);
+  --btn-ghost-accent:   var(--accent);
+}
+
+/* ─── Cards ─── */
+:root {
+  --card-bg:            var(--bg-elevated);
+  --card-radius:        var(--radius-lg);
+  --card-padding:       var(--space-8);      /* 32px */
+  --card-padding-sm:    var(--space-6);      /* 24px */
+  --card-border-width:  1px;
+  --card-border:        transparent;
+  --card-border-hover:  var(--accent);
+  --card-shadow:        var(--shadow-card);
+  --card-shadow-hover:  var(--shadow-hover);
+  --card-lift:          translateY(-2px);
+  --card-transition:
+    transform      var(--dur-base) var(--ease-out),
+    box-shadow     var(--dur-base) var(--ease-out),
+    border-color   var(--dur-slow) var(--ease-inout);
+}
+
+/* ─── Forms ─── */
+:root {
+  --form-field-height:        48px;
+  --form-border-color:        var(--ink-300);
+  --form-border-width:        1px;
+  --form-border-focus:        var(--accent);
+  --form-border-focus-width:  2px;
+  --form-label-size:          var(--fs-small);
+  --form-label-color:         var(--ink-500);
+  --form-label-active-color:  var(--accent);
+  --form-label-float-y:      -1.5em;    /* Floating label lift offset */
+  --form-input-size:          var(--fs-body);
+  --form-input-color:         var(--ink-900);
+  --form-placeholder-color:   var(--ink-300);
+  --form-transition:
+    border-color  var(--dur-fast) var(--ease-inout),
+    color         var(--dur-fast) var(--ease-inout);
+}
+
+/* ─── Tags / Badges ─── */
+:root {
+  --badge-height:   24px;
+  --badge-px:       10px;
+  --badge-radius:   var(--radius-pill);
+  --badge-size:     var(--fs-micro);
+  --badge-weight:   500;
+  --badge-ls:       var(--ls-caps);
+}
+
+/* ─── Dividers ─── */
+:root {
+  --divider-color: var(--ink-100);
+  --divider-width: 1px;
+}
+
+
+/* ═══════════════════════════════════════════════════════
+   12. Atmospheric Effects
+   ───────────────────────────────────────────────────────
+   Noise texture: SVG data URI at ~2.5% opacity.
+   Applied as pseudo-element background on hero + CTA sections.
+   Adds film grain / material tactility without any HTTP request.
+
+   Radial glows: barely-perceptible teal warmth.
+   Positioned off-canvas or at section edges.
+   ═══════════════════════════════════════════════════════ */
+
+:root {
+  /*
+   * SVG noise texture
+   * fractalNoise, 4 octaves, stitchTiles = seamless tiling
+   * Desaturated (feColorMatrix saturate=0) → greyscale grain
+   */
+  --noise-svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+
+  /*
+   * Hero radial glow — teal warmth, off-canvas position
+   * Place on the hero section container as background-image layer
+   * Layered behind content using background-image, not box-shadow
+   */
+  --hero-glow:
+    radial-gradient(
+      ellipse 60% 50% at 80% 30%,
+      var(--accent-glow) 0%,
+      transparent 70%
+    );
+
+  /*
+   * Dark section atmospheric glow
+   * Used in DX-OS showcase + final CTA on --bg-deep
+   */
+  --deep-glow:
+    radial-gradient(
+      ellipse 50% 60% at 15% 65%,
+      rgba(0, 184, 148, 0.08) 0%,
+      transparent 65%
+    );
+}

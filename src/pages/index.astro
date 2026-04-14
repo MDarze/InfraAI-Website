@@ -1,0 +1,859 @@
+---
+import '../styles/global.css';
+
+const currentYear = new Date().getFullYear();
+---
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="نستشير. ننفّذ. نحوّل. خدمات التحول الرقمي والأمن السيبراني للشركات السعودية." />
+    <meta name="keywords" content="التحول الرقمي، DX-OS، الأمن السيبراني، رؤية 2030" />
+    <meta property="og:title" content="InfraAI Digital Solutions" />
+    <meta property="og:description" content="خدمات التحول الرقمي والأمن السيبراني" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://infraai-dx.com/" />
+    <link rel="canonical" href="https://infraai-dx.com/" />
+    <link rel="alternate" hreflang="en" href="https://infraai-dx.com/en/" />
+    <title>InfraAI Digital Solutions | استشارات التحول الرقمي</title>
+    <style>
+      /* Nav */
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: var(--nav-z);
+        height: var(--nav-height);
+        background: var(--nav-bg);
+        backdrop-filter: var(--nav-blur);
+        border-bottom: 1px solid transparent;
+        transition: border-color var(--dur-base) var(--ease-inout);
+      }
+
+      .nav.scrolled {
+        border-bottom-color: var(--nav-border-color);
+      }
+
+      .nav-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 100%;
+        padding-inline: var(--gutter-sm);
+      }
+
+      @media (min-width: 1280px) {
+        .nav-content {
+          padding-inline: var(--gutter-lg);
+        }
+      }
+
+      .logo {
+        font-size: var(--fs-h3);
+        font-weight: var(--fw-semi);
+        color: var(--ink-900);
+        text-decoration: none;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: var(--space-12);
+        align-items: center;
+        list-style: none;
+      }
+
+      .nav-link {
+        font-size: var(--nav-link-size);
+        font-weight: var(--nav-link-weight);
+        color: var(--nav-link-color);
+        text-decoration: none;
+        transition: color var(--dur-fast) var(--ease-inout);
+      }
+
+      .nav-link:hover {
+        color: var(--nav-link-hover-color);
+      }
+
+      .lang-switch {
+        background: var(--bg-elevated);
+        border: none;
+        padding: var(--space-2) var(--space-4);
+        border-radius: var(--radius-sm);
+        font-size: var(--fs-small);
+        font-weight: var(--fw-medium);
+        color: var(--ink-900);
+        cursor: pointer;
+        transition: all var(--dur-fast) var(--ease-inout);
+      }
+
+      .lang-switch:hover {
+        background: var(--bg-deep);
+        color: var(--ink-000);
+      }
+
+      /* Hero */
+      .hero {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding-block: var(--space-24);
+        background: var(--bg-canvas);
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: var(--hero-glow);
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 1;
+        max-width: 600px;
+      }
+
+      .hero h1 {
+        font-size: var(--fs-hero);
+        line-height: var(--lh-hero);
+        margin-block-end: var(--space-8);
+        animation: fadeInUp 0.8s var(--ease-out) forwards;
+        opacity: 0;
+      }
+
+      .hero p {
+        font-size: clamp(1.125rem, 3vw, 1.25rem);
+        color: var(--ink-700);
+        margin-block-end: var(--space-12);
+        animation: fadeInUp 0.8s var(--ease-out) 0.15s forwards;
+        opacity: 0;
+      }
+
+      .hero-ctas {
+        display: flex;
+        gap: var(--space-6);
+        flex-wrap: wrap;
+        margin-block-end: var(--space-12);
+        animation: fadeInUp 0.8s var(--ease-out) 0.3s forwards;
+        opacity: 0;
+      }
+
+      .hero-trust {
+        font-size: var(--fs-small);
+        color: var(--ink-500);
+        animation: fadeInUp 0.8s var(--ease-out) 0.45s forwards;
+        opacity: 0;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(24px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Pillars Grid */
+      .pillars {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: var(--space-12);
+        margin-block-end: var(--space-32);
+      }
+
+      .pillar-card {
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: var(--card-radius);
+        padding: var(--card-padding);
+        transition: var(--card-transition);
+      }
+
+      .pillar-card:hover {
+        border-color: var(--card-border-hover);
+        box-shadow: var(--card-shadow-hover);
+        transform: var(--card-lift);
+      }
+
+      .pillar-icon {
+        width: 64px;
+        height: 64px;
+        background: var(--accent-tint);
+        border-radius: var(--radius-lg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-block-end: var(--space-6);
+        font-size: 2rem;
+      }
+
+      .pillar-card h3 {
+        margin-block-end: var(--space-3);
+      }
+
+      .pillar-card p {
+        color: var(--ink-500);
+        margin-block-end: var(--space-6);
+        line-height: var(--lh-relaxed);
+      }
+
+      .pillar-link {
+        color: var(--accent);
+        font-weight: var(--fw-semi);
+        text-decoration: none;
+        transition: color var(--dur-fast) var(--ease-inout);
+      }
+
+      .pillar-link:hover {
+        color: var(--accent-hover);
+      }
+
+      /* DX-OS Showcase */
+      .dxos-section {
+        background: var(--bg-deep);
+        color: var(--ink-000);
+        padding-block: var(--section-y-mobile);
+        margin-block: var(--space-32) 0;
+      }
+
+      @media (min-width: 768px) {
+        .dxos-section {
+          padding-block: var(--section-y-tablet);
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .dxos-section {
+          padding-block: var(--section-y-desktop);
+        }
+      }
+
+      .dxos-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--space-16);
+        align-items: center;
+      }
+
+      @media (min-width: 1024px) {
+        .dxos-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      .dxos-content h2 {
+        color: var(--ink-000);
+        margin-block-end: var(--space-6);
+      }
+
+      .dxos-content p {
+        color: var(--ink-000);
+        opacity: 0.9;
+        margin-block-end: var(--space-6);
+        line-height: var(--lh-relaxed);
+      }
+
+      .timeline {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: var(--radius-lg);
+        padding: var(--space-8);
+        margin-block-top: var(--space-12);
+      }
+
+      .timeline-title {
+        font-size: var(--fs-small);
+        text-transform: uppercase;
+        letter-spacing: var(--ls-caps);
+        color: var(--accent-dark);
+        margin-block-end: var(--space-6);
+      }
+
+      .timeline-steps {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: var(--space-4);
+      }
+
+      .timeline-step {
+        text-align: center;
+        padding: var(--space-4);
+        border-radius: var(--radius-sm);
+        background: rgba(0, 212, 168, 0.1);
+        font-size: var(--fs-small);
+      }
+
+      .timeline-step-num {
+        display: block;
+        font-weight: var(--fw-semi);
+        color: var(--accent-dark);
+        font-size: var(--fs-h3);
+        margin-block-end: var(--space-1);
+      }
+
+      /* Stats */
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: var(--space-12);
+        margin-block: var(--space-32);
+        padding: var(--space-16);
+        background: var(--bg-elevated);
+        border-radius: var(--radius-lg);
+      }
+
+      .stat {
+        text-align: center;
+      }
+
+      .stat-number {
+        font-size: clamp(2.5rem, 8vw, 3.5rem);
+        font-weight: var(--fw-semi);
+        color: var(--accent);
+        line-height: 1;
+        margin-block-end: var(--space-3);
+      }
+
+      .stat-label {
+        font-size: var(--fs-body);
+        color: var(--ink-700);
+        font-weight: var(--fw-medium);
+      }
+
+      /* Services Summary */
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: var(--space-8);
+        margin-block: var(--space-24);
+      }
+
+      .service-teaser {
+        padding: var(--space-6);
+        background: var(--bg-elevated);
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--divider-color);
+        transition: all var(--dur-base) var(--ease-inout);
+        text-decoration: none;
+      }
+
+      .service-teaser:hover {
+        border-color: var(--accent);
+        transform: translateY(-2px);
+      }
+
+      .service-teaser h4 {
+        color: var(--ink-900);
+        margin-block-end: var(--space-2);
+      }
+
+      .service-teaser p {
+        font-size: var(--fs-small);
+        color: var(--ink-500);
+      }
+
+      /* Blog Cards */
+      .insights-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: var(--space-12);
+        margin-block: var(--space-24);
+      }
+
+      .insight-card {
+        background: var(--bg-elevated);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        box-shadow: var(--shadow-card);
+        transition: var(--card-transition);
+      }
+
+      .insight-card:hover {
+        box-shadow: var(--shadow-hover);
+        transform: translateY(-4px);
+      }
+
+      .insight-image {
+        width: 100%;
+        height: 180px;
+        background: var(--accent-tint);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+      }
+
+      .insight-content {
+        padding: var(--card-padding);
+      }
+
+      .insight-category {
+        display: inline-block;
+        background: var(--accent-tint);
+        color: var(--accent);
+        padding: var(--space-1) var(--space-3);
+        border-radius: var(--radius-pill);
+        font-size: var(--fs-micro);
+        font-weight: var(--fw-semi);
+        margin-block-end: var(--space-3);
+      }
+
+      .insight-content h3 {
+        margin-block-end: var(--space-3);
+        font-size: var(--fs-h3);
+      }
+
+      .insight-content p {
+        color: var(--ink-500);
+        font-size: var(--fs-small);
+        margin-block-end: var(--space-4);
+      }
+
+      .insight-link {
+        color: var(--accent);
+        font-weight: var(--fw-semi);
+        text-decoration: none;
+      }
+
+      /* CTA Bands */
+      .cta-band {
+        padding: var(--space-16) var(--space-12);
+        background: var(--bg-elevated);
+        border-radius: var(--radius-lg);
+        border-left: 4px solid var(--accent);
+        margin-block: var(--space-24);
+        text-align: center;
+      }
+
+      .cta-band h3 {
+        margin-block-end: var(--space-4);
+      }
+
+      .cta-band p {
+        margin-block-end: var(--space-8);
+        color: var(--ink-700);
+      }
+
+      .final-cta {
+        background: var(--bg-deep);
+        color: var(--ink-000);
+        padding: var(--space-24) var(--space-12);
+        margin-block-top: var(--space-32);
+        text-align: center;
+      }
+
+      .final-cta h2 {
+        color: var(--ink-000);
+        margin-block-end: var(--space-12);
+      }
+
+      .email-form {
+        display: flex;
+        gap: var(--space-4);
+        max-width: 500px;
+        margin-inline: auto;
+        margin-block-end: var(--space-8);
+        flex-wrap: wrap;
+      }
+
+      .email-input {
+        flex: 1;
+        min-width: 200px;
+        padding: var(--space-3) var(--space-4);
+        border: 1px solid var(--ink-300);
+        border-radius: var(--radius-sm);
+        font-size: var(--fs-body);
+      }
+
+      .email-input::placeholder {
+        color: var(--ink-300);
+      }
+
+      /* Footer */
+      .footer {
+        background: var(--bg-elevated);
+        border-top: 1px solid var(--divider-color);
+        padding: var(--space-16) var(--gutter-sm);
+      }
+
+      @media (min-width: 1280px) {
+        .footer {
+          padding: var(--space-16) var(--gutter-lg);
+        }
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: var(--space-12);
+        margin-block-end: var(--space-12);
+      }
+
+      .footer-col h4 {
+        margin-block-end: var(--space-6);
+        font-size: var(--fs-body);
+      }
+
+      .footer-col ul {
+        list-style: none;
+      }
+
+      .footer-col li {
+        margin-block-end: var(--space-3);
+      }
+
+      .footer-col a {
+        color: var(--ink-700);
+        text-decoration: none;
+        font-size: var(--fs-small);
+        transition: color var(--dur-fast) var(--ease-inout);
+      }
+
+      .footer-col a:hover {
+        color: var(--accent);
+      }
+
+      .footer-bottom {
+        border-top: 1px solid var(--divider-color);
+        padding-top: var(--space-8);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: var(--fs-small);
+        color: var(--ink-500);
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- NAV -->
+    <nav class="nav" id="nav">
+      <div class="container nav-content">
+        <a href="/" class="logo">InfraAI</a>
+        <ul class="nav-links">
+          <li><a href="#services" class="nav-link">الخدمات</a></li>
+          <li><a href="/about" class="nav-link">عن الشركة</a></li>
+          <li><a href="/insights" class="nav-link">المعرفة</a></li>
+          <li><a href="/contact" class="nav-link">التواصل</a></li>
+          <li><a href="/en/" class="lang-switch">EN</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-content">
+        <h1>نستشير.</h1>
+        <h1 style="font-size: var(--fs-h1);">ننفّذ.</h1>
+        <h1 style="font-size: var(--fs-h2);">نحوّل.</h1>
+        <p>
+          نحن شركاء التحول الرقمي الحقيقيين. نشخّص، ننفذ، ونبني الحلول التي تحقق رؤية 2030.
+        </p>
+        <div class="hero-ctas">
+          <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">
+            احجز تقييم DX-OS
+          </button>
+          <button class="btn-secondary" onclick="document.getElementById('services').scrollIntoView({behavior: 'smooth'})">
+            استكشف خدماتنا
+          </button>
+        </div>
+        <p class="hero-trust">
+          ✓ شركات رائدة تثق بنا | ✓ متوافقون مع رؤية 2030
+        </p>
+      </div>
+    </section>
+
+    <!-- PILLARS -->
+    <section id="services" style="padding-block: var(--section-y-mobile);">
+      <div class="container">
+        <h2 style="margin-block-end: var(--space-12);">أربع مجالات للتميز</h2>
+        <div class="pillars">
+          <div class="pillar-card">
+            <div class="pillar-icon">🤖</div>
+            <h3>تحول الذكاء الاصطناعي</h3>
+            <p>تقييم الجاهزية، اكتشاف حالات الاستخدام، وبناء وكلاء ذكية مخصصة.</p>
+            <a href="/services/ai/" class="pillar-link">اعرف المزيد ←</a>
+          </div>
+          <div class="pillar-card">
+            <div class="pillar-icon">⚙️</div>
+            <h3>التحول الرقمي</h3>
+            <p>DX-OS: تقييم 5 أيام شامل + تصميم التشغيل الرقمي الجديد.</p>
+            <a href="/dxos/" class="pillar-link">اعرف المزيد ←</a>
+          </div>
+          <div class="pillar-card">
+            <div class="pillar-icon">🔐</div>
+            <h3>الأمن السيبراني</h3>
+            <p>اختبارات الاختراق، العمليات الأمنية، الامتثال للأنظمة.</p>
+            <a href="/services/cybersecurity/" class="pillar-link">اعرف المزيد ←</a>
+          </div>
+          <div class="pillar-card">
+            <div class="pillar-icon">🤝</div>
+            <h3>برنامج التوزيع</h3>
+            <p>كن شريكنا في التوزيع. منصات برمجيات وأدوات أمن سيبراني.</p>
+            <a href="/partners/" class="pillar-link">اعرف المزيد ←</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DX-OS SHOWCASE -->
+    <section class="dxos-section">
+      <div class="container">
+        <div class="dxos-grid">
+          <div class="dxos-content">
+            <h2>DX-OS: نظام التشغيل الرقمي</h2>
+            <p>
+              منصتنا الملكية للتقييم الشامل. يقضي مهندسونا 5 أيام في شركتك، ويحللون العمليات بعمق،
+              ويقدمون تقرير شامل يتضمن أولويات التحول ورؤى الذكاء الاصطناعي.
+            </p>
+            <p>
+              يتوافق بنسبة 100% مع رؤية 2030. من 10,000 ريال.
+            </p>
+            <a href="/dxos/" class="btn-primary" style="display: inline-block;">
+              اعرف المزيد عن DX-OS
+            </a>
+
+            <div class="timeline">
+              <div class="timeline-title">العملية الـ 5 أيام</div>
+              <div class="timeline-steps">
+                <div class="timeline-step">
+                  <span class="timeline-step-num">1</span>
+                  التشخيص
+                </div>
+                <div class="timeline-step">
+                  <span class="timeline-step-num">2</span>
+                  التحليل
+                </div>
+                <div class="timeline-step">
+                  <span class="timeline-step-num">3</span>
+                  التصميم
+                </div>
+                <div class="timeline-step">
+                  <span class="timeline-step-num">4</span>
+                  التقرير
+                </div>
+                <div class="timeline-step">
+                  <span class="timeline-step-num">5</span>
+                  الخارطة
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="background: var(--accent-glow); border-radius: var(--radius-lg); min-height: 400px; display: flex; align-items: center; justify-content: center; color: var(--ink-000);">
+            <div style="text-align: center;">
+              <div style="font-size: 4rem; margin-block-end: var(--space-6);">📊</div>
+              <p>رسم توضيحي لنظام DX-OS</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section style="padding-block: var(--section-y-mobile);">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat">
+            <div class="stat-number">5</div>
+            <div class="stat-label">أيام للتقييم الشامل</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">متوافق مع رؤية 2030</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">4</div>
+            <div class="stat-label">مجالات خدمة متخصصة</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">+50</div>
+            <div class="stat-label">مشروع ناجح</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES SUMMARY -->
+    <section style="padding-block: var(--section-y-mobile);">
+      <div class="container">
+        <h2 style="margin-block-end: var(--space-12);">خدماتنا الأساسية</h2>
+        <div class="services-grid">
+          <a href="/services/ai/" class="service-teaser">
+            <h4>تحول الذكاء الاصطناعي</h4>
+            <p>تقييم الجاهزية والتكامل والأتمتة الذكية</p>
+          </a>
+          <a href="/dxos/" class="service-teaser">
+            <h4>DX-OS التقييم الشامل</h4>
+            <p>تقييم 5 أيام شامل للتحول الرقمي</p>
+          </a>
+          <a href="/services/cybersecurity/" class="service-teaser">
+            <h4>الأمن السيبراني</h4>
+            <p>اختبارات الاختراق والعمليات الأمنية</p>
+          </a>
+          <a href="/partners/" class="service-teaser">
+            <h4>برنامج التوزيع</h4>
+            <p>توزيع المنصات والحلول البرمجية</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- INSIGHTS PREVIEW -->
+    <section style="padding-block: var(--section-y-mobile); background: var(--bg-subtle);">
+      <div class="container">
+        <h2 style="margin-block-end: var(--space-12);">أحدث المقالات</h2>
+        <div class="insights-grid">
+          <article class="insight-card">
+            <div class="insight-image">📝</div>
+            <div class="insight-content">
+              <span class="insight-category">التحول الرقمي</span>
+              <h3>5 خطوات للبدء في رحلة التحول الرقمي</h3>
+              <p>دليل عملي لقادة الأعمال الذين يريدون تسريع تحولهم الرقمي.</p>
+              <a href="/insights/5-steps-digital-transformation/" class="insight-link">اقرأ المقالة →</a>
+            </div>
+          </article>
+
+          <article class="insight-card">
+            <div class="insight-image">🤖</div>
+            <div class="insight-content">
+              <span class="insight-category">الذكاء الاصطناعي</span>
+              <h3>كيف تحول الذكاء الاصطناعي الصناعات التقليدية</h3>
+              <p>نظرة عميقة على تطبيقات الذكاء الاصطناعي في القطاع الإنشائي والصناعي.</p>
+              <a href="/insights/ai-transformation-industries/" class="insight-link">اقرأ المقالة →</a>
+            </div>
+          </article>
+
+          <article class="insight-card">
+            <div class="insight-image">🔐</div>
+            <div class="insight-content">
+              <span class="insight-category">الأمن السيبراني</span>
+              <h3>الامتثال للمعايير الأمنية: NCA ECC</h3>
+              <p>ما تحتاج لمعرفته عن معايير الأمن السيبراني الوطنية.</p>
+              <a href="/insights/nca-ecc-compliance/" class="insight-link">اقرأ المقالة →</a>
+            </div>
+          </article>
+        </div>
+        <div style="text-align: center; margin-block-top: var(--space-12);">
+          <a href="/insights/" class="btn-secondary">عرض جميع المقالات</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOUNDING CLIENT CTA -->
+    <section style="padding-block: var(--section-y-mobile);">
+      <div class="container">
+        <div class="cta-band">
+          <h3>برنامج العميل المؤسس</h3>
+          <p>كن من أول 3 عملاء ونحصل على تقييم DX-OS مجاني بالكامل.</p>
+          <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">
+            تقدم الآن
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="final-cta">
+      <div class="container">
+        <h2>جاهز للبدء؟</h2>
+        <p style="margin-block-end: var(--space-12); font-size: var(--fs-h3);">
+          دعنا نساعدك في رحلة التحول الرقمي
+        </p>
+        <form class="email-form" id="contact">
+          <input
+            type="email"
+            class="email-input"
+            placeholder="بريدك الإلكتروني"
+            required
+          />
+          <button type="submit" class="btn-primary">
+            تواصل معنا
+          </button>
+        </form>
+        <p style="font-size: var(--fs-small); opacity: 0.8;">
+          سيرد عليك فريقنا في غضون 24 ساعة
+        </p>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <h4>الخدمات</h4>
+            <ul>
+              <li><a href="/services/ai/">تحول الذكاء الاصطناعي</a></li>
+              <li><a href="/dxos/">DX-OS التقييم</a></li>
+              <li><a href="/services/cybersecurity/">الأمن السيبراني</a></li>
+              <li><a href="/partners/">برنامج التوزيع</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>الشركة</h4>
+            <ul>
+              <li><a href="/about/">عن InfraAI</a></li>
+              <li><a href="/portfolio/">المشاريع</a></li>
+              <li><a href="/contact/">التواصل</a></li>
+              <li><a href="/careers/">الوظائف</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>المعرفة</h4>
+            <ul>
+              <li><a href="/insights/">المقالات</a></li>
+              <li><a href="/insights/?category=vision2030">رؤية 2030</a></li>
+              <li><a href="/insights/?category=ai">الذكاء الاصطناعي</a></li>
+              <li><a href="/insights/?category=cybersecurity">الأمن السيبراني</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>الاتصال</h4>
+            <ul>
+              <li>الرياض، السعودية</li>
+              <li><a href="tel:+966112222222">+966 11 2222 2222</a></li>
+              <li><a href="mailto:sales@infraai-dx.co">sales@infraai-dx.co</a></li>
+              <li><a href="https://linkedin.com">LinkedIn</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; {currentYear} InfraAI Digital Solutions. جميع الحقوق محفوظة.</p>
+          <div style="display: flex; gap: var(--space-12);">
+            <a href="/privacy/" style="text-decoration: none; color: var(--ink-500);">سياسة الخصوصية</a>
+            <a href="/terms/" style="text-decoration: none; color: var(--ink-500);">الشروط والأحكام</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Sticky nav border on scroll
+      const nav = document.getElementById('nav');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 10) {
+          nav.classList.add('scrolled');
+        } else {
+          nav.classList.remove('scrolled');
+        }
+      });
+
+      // Email form
+      document.querySelector('.email-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = e.target.querySelector('input[type="email"]').value;
+        // TODO: Integrate with Web3Forms
+        alert(`شكراً! سيتم التواصل معك على ${email}`);
+      });
+    </script>
+  </body>
+</html>
