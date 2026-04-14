@@ -35,3 +35,6 @@ Thumbs.db
 
 # Astro cache
 .astro/
+
+# Git bundles (distribution artifacts)
+*.bundle
