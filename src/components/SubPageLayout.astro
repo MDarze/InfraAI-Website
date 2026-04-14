@@ -1,0 +1,77 @@
+---
+/**
+ * SubPageLayout.astro
+ *
+ * Wrapper component for sub-pages (About, Contact, Portfolio, DX-OS, Blog)
+ * Adds a breadcrumb bar above the hero section for navigation back to home
+ */
+
+interface Props {
+  pageTitle: string;  // e.g., "عن الشركة" (Arabic) or "About" (English)
+  lang: string;       // "ar" or "en"
+}
+
+const { pageTitle, lang } = Astro.props;
+const BASE_URL = import.meta.env.BASE_URL;
+const isArabic = lang === "ar";
+const homeUrl = isArabic ? `${BASE_URL}/` : `${BASE_URL}/en/`;
+const homeLabel = isArabic ? "الصفحة الرئيسية" : "Home";
+const arrowChar = isArabic ? "←" : "→";
+---
+
+<div class="breadcrumb-bar">
+  <div class="container breadcrumb-content">
+    <a href={homeUrl} class="breadcrumb-link">
+      {isArabic ? "InfraAI" : "InfraAI"}
+    </a>
+    <span class="breadcrumb-separator">{arrowChar}</span>
+    <a href={homeUrl} class="breadcrumb-link">
+      {homeLabel}
+    </a>
+    {pageTitle && (
+      <>
+        <span class="breadcrumb-separator">/</span>
+        <span class="breadcrumb-current">{pageTitle}</span>
+      </>
+    )}
+  </div>
+</div>
+
+<slot />
+
+<style>
+  .breadcrumb-bar {
+    background: var(--bg-canvas);
+    border-bottom: 1px solid var(--ink-100);
+    padding-block: var(--space-6);
+  }
+
+  .breadcrumb-content {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+  }
+
+  .breadcrumb-link {
+    font-size: var(--fs-small);
+    color: var(--ink-500);
+    text-decoration: none;
+    transition: color var(--dur-fast) var(--ease-inout);
+  }
+
+  .breadcrumb-link:hover {
+    color: var(--accent);
+  }
+
+  .breadcrumb-separator {
+    font-size: var(--fs-small);
+    color: var(--ink-300);
+  }
+
+  .breadcrumb-current {
+    font-size: var(--fs-small);
+    color: var(--ink-700);
+    font-weight: var(--fw-medium);
+  }
+</style>

@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import BreadcrumbBar from '../components/BreadcrumbBar.astro';
 const BASE_URL = import.meta.env.BASE_URL;
 ---
 
@@ -15,3 +16,96 @@ const BASE_URL = import.meta.env.BASE_URL;
     <style>
       .nav { position: sticky; top: 0; z-index: 100; height: 64px; background: var(--nav-bg); }
       .nav-content { display: flex; justify-content: space-between; align-items: center; height: 100%; padding-inline: var(--gutter-sm); }
+      .logo, .nav-link { text-decoration: none; color: var(--ink-700); font-weight: 500; }
+      .section { padding-block: var(--section-y-mobile); }
+      .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--space-12); margin-block: var(--space-24); }
+      .project-card { background: var(--bg-elevated); border-radius: var(--radius-lg); overflow: hidden; transition: transform var(--dur-base) var(--ease-out); cursor: pointer; }
+      .project-card:hover { transform: translateY(-4px); }
+      .project-image { background: var(--accent-tint); height: 200px; display: flex; align-items: center; justify-content: center; font-size: 2rem; }
+      .project-content { padding: var(--space-8); }
+      .project-client { color: var(--accent); font-weight: 500; }
+      .project-title { margin-block: var(--space-3); }
+      .footer { background: var(--bg-elevated); border-top: 1px solid var(--divider-color); padding: var(--space-16) var(--gutter-sm); }
+    </style>
+  </head>
+
+  <body>
+    <nav class="nav">
+      <div class="container nav-content">
+        <a href={`${BASE_URL}/`} class="logo">InfraAI</a>
+        <div><a href="/en/portfolio/">EN</a></div>
+      </div>
+    </nav>
+
+    <section class="section">
+      <div class="container">
+        <h1 style="margin-block-end: var(--space-8);">مشاريعنا</h1>
+        <p style="color: var(--ink-700); margin-block-end: var(--space-24);">
+          مجموعة مختارة من المشاريع الناجحة التي تمثل خبرتنا في التحول الرقمي والأمن السيبراني.
+        </p>
+
+        <div class="projects-grid">
+          <div class="project-card">
+            <div class="project-image">🏗️</div>
+            <div class="project-content">
+              <span class="project-client">شركة إنشاءات رائدة</span>
+              <h3 class="project-title">تقييم وتحسين العمليات الرقمية</h3>
+              <p style="color: var(--ink-500); font-size: var(--fs-small);">DX-OS Assessment | تحسين الإنتاجية بنسبة 40%</p>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-image">🏭</div>
+            <div class="project-content">
+              <span class="project-client">شركة صناعية</span>
+              <h3 class="project-title">تطبيق الذكاء الاصطناعي في الإنتاج</h3>
+              <p style="color: var(--ink-500); font-size: var(--fs-small);">AI Transformation | تقليل الأخطاء بنسبة 65%</p>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-image">🔐</div>
+            <div class="project-content">
+              <span class="project-client">مؤسسة حكومية</span>
+              <h3 class="project-title">تقييم الأمن السيبراني الشامل</h3>
+              <p style="color: var(--ink-500); font-size: var(--fs-small);">Security Assessment | متوافقة مع NCA ECC</p>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-image">💼</div>
+            <div class="project-content">
+              <span class="project-client">شركة خدمات مالية</span>
+              <h3 class="project-title">رقمنة العمليات المصرفية</h3>
+              <p style="color: var(--ink-500); font-size: var(--fs-small);">Digital Transformation | تقليل وقت المعاملات 50%</p>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-image">📱</div>
+            <div class="project-content">
+              <span class="project-client">شركة تجزئة</span>
+              <h3 class="project-title">تطبيق جوال وتكامل الأنظمة</h3>
+              <p style="color: var(--ink-500); font-size: var(--fs-small);">Digital Ecosystem | زيادة العملاء 35%</p>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-image">🤖</div>
+            <div class="project-content">
+              <span class="project-client">شركة خدمات احترافية</span>
+              <h3 class="project-title">أتمتة سير العمل بالذكاء الاصطناعي</h3>
+              <p style="color: var(--ink-500); font-size: var(--fs-small);">AI Automation | توفير 30 ساعة عمل أسبوعياً</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <p style="text-align: center; color: var(--ink-500); font-size: var(--fs-small);">&copy; 2024 InfraAI</p>
+      </div>
+    </footer>
+  </body>
+</html>

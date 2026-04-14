@@ -1,0 +1,76 @@
+---
+/**
+ * BreadcrumbBar.astro
+ *
+ * Breadcrumb navigation component for sub-pages
+ * Usage:
+ *   <BreadcrumbBar pageTitle="عن الشركة" lang="ar" />
+ */
+
+interface Props {
+  pageTitle: string;  // Current page title
+  lang?: string;      // "ar" or "en" (defaults to detecting from html)
+}
+
+const { pageTitle, lang = "ar" } = Astro.props;
+const BASE_URL = import.meta.env.BASE_URL;
+const isArabic = lang === "ar";
+const homeUrl = isArabic ? `${BASE_URL}/` : `${BASE_URL}/en/`;
+const homeLabel = isArabic ? "الصفحة الرئيسية" : "Home";
+const arrowChar = isArabic ? "←" : "→";
+---
+
+<div class="breadcrumb-bar">
+  <div class="container breadcrumb-content">
+    <a href={homeUrl} class="breadcrumb-link">
+      InfraAI
+    </a>
+    <span class="breadcrumb-separator">{arrowChar}</span>
+    <a href={homeUrl} class="breadcrumb-link">
+      {homeLabel}
+    </a>
+    {pageTitle && (
+      <>
+        <span class="breadcrumb-separator">/</span>
+        <span class="breadcrumb-current">{pageTitle}</span>
+      </>
+    )}
+  </div>
+</div>
+
+<style>
+  .breadcrumb-bar {
+    background: var(--bg-canvas);
+    border-bottom: 1px solid var(--ink-100);
+    padding-block: var(--space-6);
+  }
+
+  .breadcrumb-content {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+  }
+
+  .breadcrumb-link {
+    font-size: var(--fs-small);
+    color: var(--ink-500);
+    text-decoration: none;
+    transition: color var(--dur-fast) var(--ease-inout);
+  }
+
+  .breadcrumb-link:hover {
+    color: var(--accent);
+  }
+
+  .breadcrumb-separator {
+    font-size: var(--fs-small);
+    color: var(--ink-300);
+  }
+
+  .breadcrumb-current {
+    font-size: var(--fs-small);
+    color: var(--ink-700);
+    font-weight: var(--fw-medium);
+  }
+</style>
