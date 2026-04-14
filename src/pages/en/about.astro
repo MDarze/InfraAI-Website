@@ -1,0 +1,122 @@
+---
+import '../../styles/global.css';
+---
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>عن InfraAI | من نحن</title>
+    <style>
+      .nav { position: sticky; top: 0; z-index: 100; height: 64px; background: var(--nav-bg); backdrop-filter: var(--nav-blur); }
+      .nav-content { display: flex; justify-content: space-between; align-items: center; height: 100%; padding-inline: var(--gutter-sm); }
+      .logo, .nav-link { text-decoration: none; color: var(--ink-700); font-weight: 500; }
+      .section { padding-block: var(--section-y-mobile); }
+      .grid-2 { display: grid; grid-template-columns: 1fr; gap: var(--space-16); }
+      @media (min-width: 1024px) { .grid-2 { grid-template-columns: 1fr 1fr; } }
+      .values-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-12); }
+      .value-card { background: var(--bg-elevated); padding: var(--space-8); border-radius: var(--radius-lg); }
+      .value-card h3 { margin-block-end: var(--space-3); }
+      .footer { background: var(--bg-elevated); border-top: 1px solid var(--divider-color); padding: var(--space-16) var(--gutter-sm); }
+    </style>
+  </head>
+
+  <body>
+    <nav class="nav">
+      <div class="container nav-content">
+        <a href="/" class="logo">InfraAI</a>
+        <div>
+          <a href="/en/about/" style="margin-inline-start: var(--space-12);">EN</a>
+        </div>
+      </div>
+    </nav>
+
+    <section class="section">
+      <div class="container">
+        <h1 style="margin-block-end: var(--space-8);">عن InfraAI</h1>
+        <p style="font-size: var(--fs-h3); color: var(--ink-700); margin-block-end: var(--space-12); line-height: var(--lh-relaxed);">
+          نحن استشاريون وشركاء تنفيذ حقيقيون في التحول الرقمي. منذ تأسيسنا، ساعدنا أكثر من 50 شركة في المملكة العربية السعودية والخليج على تحقيق أهدافهم الرقمية.
+        </p>
+      </div>
+    </section>
+
+    <section class="section" style="background: var(--bg-subtle);">
+      <div class="container">
+        <h2>قصتنا</h2>
+        <div class="grid-2">
+          <div>
+            <h3>البداية</h3>
+            <p style="color: var(--ink-700); line-height: var(--lh-relaxed); margin-block-end: var(--space-12);">
+              تأسست InfraAI بحلم بسيط: إنشاء شركة استشارات حقيقية تقوم بالفعل بتنفيذ التحول الرقمي، لا الحديث عنه فقط.
+            </p>
+          </div>
+          <div>
+            <h3>رؤيتنا</h3>
+            <p style="color: var(--ink-700); line-height: var(--lh-relaxed); margin-block-end: var(--space-12);">
+              أن تصبح شركة التحول الرقمي المفضلة للمؤسسات السعودية والخليجية، معروفة بالتنفيذ الدقيق والنتائج الملموسة.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 style="margin-block-end: var(--space-12);">قيمنا</h2>
+        <div class="values-grid">
+          <div class="value-card">
+            <h3>الاستشارة الحقيقية</h3>
+            <p style="color: var(--ink-500);">نستمع بعمق قبل أن نقترح. نفهم عملياتك قبل أن ننصحك.</p>
+          </div>
+          <div class="value-card">
+            <h3>التنفيذ بالكامل</h3>
+            <p style="color: var(--ink-500);">لا نتركك مع تقرير. نبقى معك من البداية إلى النهاية.</p>
+          </div>
+          <div class="value-card">
+            <h3>النتائج الملموسة</h3>
+            <p style="color: var(--ink-500);">كل مشروع له مؤشرات أداء واضحة ومقاسة.</p>
+          </div>
+          <div class="value-card">
+            <h3>الابتكار المستمر</h3>
+            <p style="color: var(--ink-500);">نتابع أحدث التقنيات والأفكار، خاصة الذكاء الاصطناعي.</p>
+          </div>
+          <div class="value-card">
+            <h3>رؤية 2030</h3>
+            <p style="color: var(--ink-500);">كل ما نفعله يتماشى مع أهداف رؤية السعودية 2030.</p>
+          </div>
+          <div class="value-card">
+            <h3>الشفافية التامة</h3>
+            <p style="color: var(--ink-500);">نتواصل بوضوح. لا مفاجآت. لا خفايا.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="background: var(--bg-elevated); text-align: center;">
+      <div class="container">
+        <h2>الأرقام التي تمثلنا</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--space-12); margin-block-top: var(--space-12);">
+          <div>
+            <div style="font-size: 2.5rem; font-weight: var(--fw-semi); color: var(--accent);">50+</div>
+            <p style="color: var(--ink-700);">مشروع ناجح</p>
+          </div>
+          <div>
+            <div style="font-size: 2.5rem; font-weight: var(--fw-semi); color: var(--accent);">100%</div>
+            <p style="color: var(--ink-700);">متوافقة مع رؤية 2030</p>
+          </div>
+          <div>
+            <div style="font-size: 2.5rem; font-weight: var(--fw-semi); color: var(--accent);">5</div>
+            <p style="color: var(--ink-700);">سنوات في السوق</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <p style="text-align: center; color: var(--ink-500); font-size: var(--fs-small);">&copy; 2024 InfraAI. جميع الحقوق محفوظة.</p>
+      </div>
+    </footer>
+  </body>
+</html>

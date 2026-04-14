@@ -1,23 +1,23 @@
 ---
-import '../styles/global.css';
+import '../../styles/global.css';
 
 const currentYear = new Date().getFullYear();
 ---
 
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="نستشير. ننفّذ. نحوّل. خدمات التحول الرقمي والأمن السيبراني للشركات السعودية." />
-    <meta name="keywords" content="التحول الرقمي، DX-OS، الأمن السيبراني، رؤية 2030" />
+    <meta name="description" content="We consult. We execute. We transform. Digital transformation and cybersecurity services for Saudi companies." />
+    <meta name="keywords" content="digital transformation, DX-OS, cybersecurity, Vision 2030" />
     <meta property="og:title" content="InfraAI Digital Solutions" />
-    <meta property="og:description" content="خدمات التحول الرقمي والأمن السيبراني" />
+    <meta property="og:description" content="Digital Transformation & Cybersecurity Services" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://infraai-dx.com/" />
-    <link rel="canonical" href="https://infraai-dx.com/" />
-    <link rel="alternate" hreflang="en" href="https://infraai-dx.com/en/" />
-    <title>InfraAI Digital Solutions | استشارات التحول الرقمي</title>
+    <meta property="og:url" content="https://infraai-dx.com/en/" />
+    <link rel="canonical" href="https://infraai-dx.com/en/" />
+    <link rel="alternate" hreflang="ar" href="https://infraai-dx.com/" />
+    <title>InfraAI Digital Solutions | Expertise that Consults. Engineering that Delivers.</title>
     <style>
       /* Nav */
       .nav {
@@ -54,6 +54,7 @@ const currentYear = new Date().getFullYear();
         font-weight: var(--fw-semi);
         color: var(--ink-900);
         text-decoration: none;
+        font-family: var(--font-display);
       }
 
       .nav-links {
@@ -69,6 +70,7 @@ const currentYear = new Date().getFullYear();
         color: var(--nav-link-color);
         text-decoration: none;
         transition: color var(--dur-fast) var(--ease-inout);
+        font-family: var(--font-body);
       }
 
       .nav-link:hover {
@@ -124,6 +126,7 @@ const currentYear = new Date().getFullYear();
         margin-block-end: var(--space-8);
         animation: fadeInUp 0.8s var(--ease-out) forwards;
         opacity: 0;
+        font-family: var(--font-display);
       }
 
       .hero p {
@@ -132,6 +135,7 @@ const currentYear = new Date().getFullYear();
         margin-block-end: var(--space-12);
         animation: fadeInUp 0.8s var(--ease-out) 0.15s forwards;
         opacity: 0;
+        font-family: var(--font-body);
       }
 
       .hero-ctas {
@@ -197,12 +201,14 @@ const currentYear = new Date().getFullYear();
 
       .pillar-card h3 {
         margin-block-end: var(--space-3);
+        font-family: var(--font-display);
       }
 
       .pillar-card p {
         color: var(--ink-500);
         margin-block-end: var(--space-6);
         line-height: var(--lh-relaxed);
+        font-family: var(--font-body);
       }
 
       .pillar-link {
@@ -252,6 +258,7 @@ const currentYear = new Date().getFullYear();
       .dxos-content h2 {
         color: var(--ink-000);
         margin-block-end: var(--space-6);
+        font-family: var(--font-display);
       }
 
       .dxos-content p {
@@ -259,6 +266,7 @@ const currentYear = new Date().getFullYear();
         opacity: 0.9;
         margin-block-end: var(--space-6);
         line-height: var(--lh-relaxed);
+        font-family: var(--font-body);
       }
 
       .timeline {
@@ -320,12 +328,14 @@ const currentYear = new Date().getFullYear();
         color: var(--accent);
         line-height: 1;
         margin-block-end: var(--space-3);
+        font-family: var(--font-display);
       }
 
       .stat-label {
         font-size: var(--fs-body);
         color: var(--ink-700);
         font-weight: var(--fw-medium);
+        font-family: var(--font-body);
       }
 
       /* Services Summary */
@@ -353,11 +363,13 @@ const currentYear = new Date().getFullYear();
       .service-teaser h4 {
         color: var(--ink-900);
         margin-block-end: var(--space-2);
+        font-family: var(--font-display);
       }
 
       .service-teaser p {
         font-size: var(--fs-small);
         color: var(--ink-500);
+        font-family: var(--font-body);
       }
 
       /* Blog Cards */
@@ -409,12 +421,14 @@ const currentYear = new Date().getFullYear();
       .insight-content h3 {
         margin-block-end: var(--space-3);
         font-size: var(--fs-h3);
+        font-family: var(--font-display);
       }
 
       .insight-content p {
         color: var(--ink-500);
         font-size: var(--fs-small);
         margin-block-end: var(--space-4);
+        font-family: var(--font-body);
       }
 
       .insight-link {
@@ -435,11 +449,13 @@ const currentYear = new Date().getFullYear();
 
       .cta-band h3 {
         margin-block-end: var(--space-4);
+        font-family: var(--font-display);
       }
 
       .cta-band p {
         margin-block-end: var(--space-8);
         color: var(--ink-700);
+        font-family: var(--font-body);
       }
 
       .final-cta {
@@ -453,6 +469,7 @@ const currentYear = new Date().getFullYear();
       .final-cta h2 {
         color: var(--ink-000);
         margin-block-end: var(--space-12);
+        font-family: var(--font-display);
       }
 
       .email-form {
@@ -471,6 +488,7 @@ const currentYear = new Date().getFullYear();
         border: 1px solid var(--ink-300);
         border-radius: var(--radius-sm);
         font-size: var(--fs-body);
+        font-family: var(--font-body);
       }
 
       .email-input::placeholder {
@@ -500,6 +518,7 @@ const currentYear = new Date().getFullYear();
       .footer-col h4 {
         margin-block-end: var(--space-6);
         font-size: var(--fs-body);
+        font-family: var(--font-display);
       }
 
       .footer-col ul {
@@ -515,6 +534,7 @@ const currentYear = new Date().getFullYear();
         text-decoration: none;
         font-size: var(--fs-small);
         transition: color var(--dur-fast) var(--ease-inout);
+        font-family: var(--font-body);
       }
 
       .footer-col a:hover {
@@ -529,6 +549,9 @@ const currentYear = new Date().getFullYear();
         align-items: center;
         font-size: var(--fs-small);
         color: var(--ink-500);
+        font-family: var(--font-body);
+        flex-wrap: wrap;
+        gap: var(--space-6);
       }
     </style>
   </head>
@@ -537,13 +560,13 @@ const currentYear = new Date().getFullYear();
     <!-- NAV -->
     <nav class="nav" id="nav">
       <div class="container nav-content">
-        <a href="/" class="logo">InfraAI</a>
+        <a href="/en/" class="logo">InfraAI</a>
         <ul class="nav-links">
-          <li><a href="#services" class="nav-link">الخدمات</a></li>
-          <li><a href="/about" class="nav-link">عن الشركة</a></li>
-          <li><a href="/insights" class="nav-link">المعرفة</a></li>
-          <li><a href="/contact" class="nav-link">التواصل</a></li>
-          <li><a href="/en/" class="lang-switch">EN</a></li>
+          <li><a href="#services" class="nav-link">Services</a></li>
+          <li><a href="/en/about/" class="nav-link">About</a></li>
+          <li><a href="/en/insights/" class="nav-link">Insights</a></li>
+          <li><a href="/en/contact/" class="nav-link">Contact</a></li>
+          <li><a href="/" class="lang-switch">AR</a></li>
         </ul>
       </div>
     </nav>
@@ -551,22 +574,22 @@ const currentYear = new Date().getFullYear();
     <!-- HERO -->
     <section class="hero">
       <div class="container hero-content">
-        <h1>نستشير.</h1>
-        <h1 style="font-size: var(--fs-h1);">ننفّذ.</h1>
-        <h1 style="font-size: var(--fs-h2);">نحوّل.</h1>
+        <h1>We consult.</h1>
+        <h1 style="font-size: var(--fs-h1);">We execute.</h1>
+        <h1 style="font-size: var(--fs-h2);">We transform.</h1>
         <p>
-          نحن شركاء التحول الرقمي الحقيقيين. نشخّص، ننفذ، ونبني الحلول التي تحقق رؤية 2030.
+          True digital transformation partners. We diagnose, implement, and build solutions that achieve Vision 2030.
         </p>
         <div class="hero-ctas">
           <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">
-            احجز تقييم DX-OS
+            Book DX-OS Assessment
           </button>
           <button class="btn-secondary" onclick="document.getElementById('services').scrollIntoView({behavior: 'smooth'})">
-            استكشف خدماتنا
+            Explore Services
           </button>
         </div>
         <p class="hero-trust">
-          ✓ شركات رائدة تثق بنا | ✓ متوافقون مع رؤية 2030
+          ✓ Trusted by leading companies | ✓ Vision 2030 aligned
         </p>
       </div>
     </section>
@@ -574,31 +597,31 @@ const currentYear = new Date().getFullYear();
     <!-- PILLARS -->
     <section id="services" style="padding-block: var(--section-y-mobile);">
       <div class="container">
-        <h2 style="margin-block-end: var(--space-12);">أربع مجالات للتميز</h2>
+        <h2 style="margin-block-end: var(--space-12);">Four Areas of Expertise</h2>
         <div class="pillars">
           <div class="pillar-card">
             <div class="pillar-icon">🤖</div>
-            <h3>تحول الذكاء الاصطناعي</h3>
-            <p>تقييم الجاهزية، اكتشاف حالات الاستخدام، وبناء وكلاء ذكية مخصصة.</p>
-            <a href="/services/ai/" class="pillar-link">اعرف المزيد ←</a>
+            <h3>AI Transformation</h3>
+            <p>Readiness assessment, use-case discovery, custom AI agents and GenAI integration.</p>
+            <a href="/en/services/ai/" class="pillar-link">Learn More →</a>
           </div>
           <div class="pillar-card">
             <div class="pillar-icon">⚙️</div>
-            <h3>التحول الرقمي</h3>
-            <p>DX-OS: تقييم 5 أيام شامل + تصميم التشغيل الرقمي الجديد.</p>
-            <a href="/dxos/" class="pillar-link">اعرف المزيد ←</a>
+            <h3>Digital Transformation</h3>
+            <p>DX-OS: comprehensive 5-day assessment plus digital operating model design.</p>
+            <a href="/en/dxos/" class="pillar-link">Learn More →</a>
           </div>
           <div class="pillar-card">
             <div class="pillar-icon">🔐</div>
-            <h3>الأمن السيبراني</h3>
-            <p>اختبارات الاختراق، العمليات الأمنية، الامتثال للأنظمة.</p>
-            <a href="/services/cybersecurity/" class="pillar-link">اعرف المزيد ←</a>
+            <h3>Cybersecurity</h3>
+            <p>Penetration testing, security operations, compliance readiness and red-team exercises.</p>
+            <a href="/en/services/cybersecurity/" class="pillar-link">Learn More →</a>
           </div>
           <div class="pillar-card">
             <div class="pillar-icon">🤝</div>
-            <h3>برنامج التوزيع</h3>
-            <p>كن شريكنا في التوزيع. منصات برمجيات وأدوات أمن سيبراني.</p>
-            <a href="/partners/" class="pillar-link">اعرف المزيد ←</a>
+            <h3>Reseller Program</h3>
+            <p>Become our partner. Enterprise software licenses and cybersecurity tools.</p>
+            <a href="/en/partners/" class="pillar-link">Learn More →</a>
           </div>
         </div>
       </div>
@@ -609,40 +632,41 @@ const currentYear = new Date().getFullYear();
       <div class="container">
         <div class="dxos-grid">
           <div class="dxos-content">
-            <h2>DX-OS: نظام التشغيل الرقمي</h2>
+            <h2>DX-OS: Digital Operating System</h2>
             <p>
-              منصتنا الملكية للتقييم الشامل. يقضي مهندسونا 5 أيام في شركتك، ويحللون العمليات بعمق،
-              ويقدمون تقرير شامل يتضمن أولويات التحول ورؤى الذكاء الاصطناعي.
+              Our proprietary comprehensive assessment platform. Our engineers spend 5 days embedded in your company,
+              analyzing operations deeply, delivering a report that covers transformation priorities, AI insights, and
+              a redesigned operating model.
             </p>
             <p>
-              يتوافق بنسبة 100% مع رؤية 2030. من 10,000 ريال.
+              100% Vision 2030 aligned. Starting from 10,000 SAR.
             </p>
-            <a href="/dxos/" class="btn-primary" style="display: inline-block;">
-              اعرف المزيد عن DX-OS
+            <a href="/en/dxos/" class="btn-primary" style="display: inline-block;">
+              Explore DX-OS
             </a>
 
             <div class="timeline">
-              <div class="timeline-title">العملية الـ 5 أيام</div>
+              <div class="timeline-title">The 5-Day Process</div>
               <div class="timeline-steps">
                 <div class="timeline-step">
                   <span class="timeline-step-num">1</span>
-                  التشخيص
+                  Diagnosis
                 </div>
                 <div class="timeline-step">
                   <span class="timeline-step-num">2</span>
-                  التحليل
+                  Analysis
                 </div>
                 <div class="timeline-step">
                   <span class="timeline-step-num">3</span>
-                  التصميم
+                  Design
                 </div>
                 <div class="timeline-step">
                   <span class="timeline-step-num">4</span>
-                  التقرير
+                  Report
                 </div>
                 <div class="timeline-step">
                   <span class="timeline-step-num">5</span>
-                  الخارطة
+                  Roadmap
                 </div>
               </div>
             </div>
@@ -650,7 +674,7 @@ const currentYear = new Date().getFullYear();
           <div style="background: var(--accent-glow); border-radius: var(--radius-lg); min-height: 400px; display: flex; align-items: center; justify-content: center; color: var(--ink-000);">
             <div style="text-align: center;">
               <div style="font-size: 4rem; margin-block-end: var(--space-6);">📊</div>
-              <p>رسم توضيحي لنظام DX-OS</p>
+              <p>DX-OS System Visualization</p>
             </div>
           </div>
         </div>
@@ -663,19 +687,19 @@ const currentYear = new Date().getFullYear();
         <div class="stats-grid">
           <div class="stat">
             <div class="stat-number">5</div>
-            <div class="stat-label">أيام للتقييم الشامل</div>
+            <div class="stat-label">Days for comprehensive assessment</div>
           </div>
           <div class="stat">
             <div class="stat-number">100%</div>
-            <div class="stat-label">متوافق مع رؤية 2030</div>
+            <div class="stat-label">Vision 2030 aligned</div>
           </div>
           <div class="stat">
             <div class="stat-number">4</div>
-            <div class="stat-label">مجالات خدمة متخصصة</div>
+            <div class="stat-label">Specialized service areas</div>
           </div>
           <div class="stat">
             <div class="stat-number">+50</div>
-            <div class="stat-label">مشروع ناجح</div>
+            <div class="stat-label">Successful projects</div>
           </div>
         </div>
       </div>
@@ -684,23 +708,23 @@ const currentYear = new Date().getFullYear();
     <!-- SERVICES SUMMARY -->
     <section style="padding-block: var(--section-y-mobile);">
       <div class="container">
-        <h2 style="margin-block-end: var(--space-12);">خدماتنا الأساسية</h2>
+        <h2 style="margin-block-end: var(--space-12);">Our Core Services</h2>
         <div class="services-grid">
-          <a href="/services/ai/" class="service-teaser">
-            <h4>تحول الذكاء الاصطناعي</h4>
-            <p>تقييم الجاهزية والتكامل والأتمتة الذكية</p>
+          <a href="/en/services/ai/" class="service-teaser">
+            <h4>AI Transformation</h4>
+            <p>Readiness assessment, use-case discovery, and intelligent automation</p>
           </a>
-          <a href="/dxos/" class="service-teaser">
-            <h4>DX-OS التقييم الشامل</h4>
-            <p>تقييم 5 أيام شامل للتحول الرقمي</p>
+          <a href="/en/dxos/" class="service-teaser">
+            <h4>DX-OS Assessment</h4>
+            <p>Comprehensive 5-day digital transformation evaluation</p>
           </a>
-          <a href="/services/cybersecurity/" class="service-teaser">
-            <h4>الأمن السيبراني</h4>
-            <p>اختبارات الاختراق والعمليات الأمنية</p>
+          <a href="/en/services/cybersecurity/" class="service-teaser">
+            <h4>Cybersecurity</h4>
+            <p>Penetration testing, security operations, and compliance</p>
           </a>
-          <a href="/partners/" class="service-teaser">
-            <h4>برنامج التوزيع</h4>
-            <p>توزيع المنصات والحلول البرمجية</p>
+          <a href="/en/partners/" class="service-teaser">
+            <h4>Reseller Program</h4>
+            <p>Enterprise software and cybersecurity tool distribution</p>
           </a>
         </div>
       </div>
@@ -709,40 +733,40 @@ const currentYear = new Date().getFullYear();
     <!-- INSIGHTS PREVIEW -->
     <section style="padding-block: var(--section-y-mobile); background: var(--bg-subtle);">
       <div class="container">
-        <h2 style="margin-block-end: var(--space-12);">أحدث المقالات</h2>
+        <h2 style="margin-block-end: var(--space-12);">Latest Insights</h2>
         <div class="insights-grid">
           <article class="insight-card">
             <div class="insight-image">📝</div>
             <div class="insight-content">
-              <span class="insight-category">التحول الرقمي</span>
-              <h3>5 خطوات للبدء في رحلة التحول الرقمي</h3>
-              <p>دليل عملي لقادة الأعمال الذين يريدون تسريع تحولهم الرقمي.</p>
-              <a href="/insights/5-steps-digital-transformation/" class="insight-link">اقرأ المقالة →</a>
+              <span class="insight-category">Digital Transformation</span>
+              <h3>5 Steps to Begin Your Digital Transformation</h3>
+              <p>A practical guide for business leaders looking to accelerate their digital transformation journey.</p>
+              <a href="/en/insights/5-steps-digital-transformation/" class="insight-link">Read Article →</a>
             </div>
           </article>
 
           <article class="insight-card">
             <div class="insight-image">🤖</div>
             <div class="insight-content">
-              <span class="insight-category">الذكاء الاصطناعي</span>
-              <h3>كيف تحول الذكاء الاصطناعي الصناعات التقليدية</h3>
-              <p>نظرة عميقة على تطبيقات الذكاء الاصطناعي في القطاع الإنشائي والصناعي.</p>
-              <a href="/insights/ai-transformation-industries/" class="insight-link">اقرأ المقالة →</a>
+              <span class="insight-category">AI</span>
+              <h3>How AI is Transforming Traditional Industries</h3>
+              <p>Deep dive into AI applications in construction, infrastructure, and industrial sectors.</p>
+              <a href="/en/insights/ai-transformation-industries/" class="insight-link">Read Article →</a>
             </div>
           </article>
 
           <article class="insight-card">
             <div class="insight-image">🔐</div>
             <div class="insight-content">
-              <span class="insight-category">الأمن السيبراني</span>
-              <h3>الامتثال للمعايير الأمنية: NCA ECC</h3>
-              <p>ما تحتاج لمعرفته عن معايير الأمن السيبراني الوطنية.</p>
-              <a href="/insights/nca-ecc-compliance/" class="insight-link">اقرأ المقالة →</a>
+              <span class="insight-category">Cybersecurity</span>
+              <h3>Understanding NCA ECC Compliance</h3>
+              <p>What you need to know about Saudi Arabia's national cybersecurity standards and requirements.</p>
+              <a href="/en/insights/nca-ecc-compliance/" class="insight-link">Read Article →</a>
             </div>
           </article>
         </div>
         <div style="text-align: center; margin-block-top: var(--space-12);">
-          <a href="/insights/" class="btn-secondary">عرض جميع المقالات</a>
+          <a href="/en/insights/" class="btn-secondary">View All Articles</a>
         </div>
       </div>
     </section>
@@ -751,10 +775,10 @@ const currentYear = new Date().getFullYear();
     <section style="padding-block: var(--section-y-mobile);">
       <div class="container">
         <div class="cta-band">
-          <h3>برنامج العميل المؤسس</h3>
-          <p>كن من أول 3 عملاء ونحصل على تقييم DX-OS مجاني بالكامل.</p>
+          <h3>Founding Client Program</h3>
+          <p>Be one of our first 3 clients and receive a complimentary DX-OS assessment.</p>
           <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">
-            تقدم الآن
+            Apply Now
           </button>
         </div>
       </div>
@@ -763,23 +787,23 @@ const currentYear = new Date().getFullYear();
     <!-- FINAL CTA -->
     <section class="final-cta">
       <div class="container">
-        <h2>جاهز للبدء؟</h2>
+        <h2>Ready to Transform?</h2>
         <p style="margin-block-end: var(--space-12); font-size: var(--fs-h3);">
-          دعنا نساعدك في رحلة التحول الرقمي
+          Let us guide your digital transformation journey
         </p>
         <form class="email-form" id="contact">
           <input
             type="email"
             class="email-input"
-            placeholder="بريدك الإلكتروني"
+            placeholder="Your email"
             required
           />
           <button type="submit" class="btn-primary">
-            تواصل معنا
+            Get in Touch
           </button>
         </form>
         <p style="font-size: var(--fs-small); opacity: 0.8;">
-          سيرد عليك فريقنا في غضون 24 ساعة
+          Our team will respond within 24 hours
         </p>
       </div>
     </section>
@@ -789,36 +813,36 @@ const currentYear = new Date().getFullYear();
       <div class="container">
         <div class="footer-grid">
           <div class="footer-col">
-            <h4>الخدمات</h4>
+            <h4>Services</h4>
             <ul>
-              <li><a href="/services/ai/">تحول الذكاء الاصطناعي</a></li>
-              <li><a href="/dxos/">DX-OS التقييم</a></li>
-              <li><a href="/services/cybersecurity/">الأمن السيبراني</a></li>
-              <li><a href="/partners/">برنامج التوزيع</a></li>
+              <li><a href="/en/services/ai/">AI Transformation</a></li>
+              <li><a href="/en/dxos/">DX-OS Assessment</a></li>
+              <li><a href="/en/services/cybersecurity/">Cybersecurity</a></li>
+              <li><a href="/en/partners/">Reseller Program</a></li>
             </ul>
           </div>
           <div class="footer-col">
-            <h4>الشركة</h4>
+            <h4>Company</h4>
             <ul>
-              <li><a href="/about/">عن InfraAI</a></li>
-              <li><a href="/portfolio/">المشاريع</a></li>
-              <li><a href="/contact/">التواصل</a></li>
-              <li><a href="/careers/">الوظائف</a></li>
+              <li><a href="/en/about/">About InfraAI</a></li>
+              <li><a href="/en/portfolio/">Projects</a></li>
+              <li><a href="/en/contact/">Contact</a></li>
+              <li><a href="/en/careers/">Careers</a></li>
             </ul>
           </div>
           <div class="footer-col">
-            <h4>المعرفة</h4>
+            <h4>Knowledge</h4>
             <ul>
-              <li><a href="/insights/">المقالات</a></li>
-              <li><a href="/insights/?category=vision2030">رؤية 2030</a></li>
-              <li><a href="/insights/?category=ai">الذكاء الاصطناعي</a></li>
-              <li><a href="/insights/?category=cybersecurity">الأمن السيبراني</a></li>
+              <li><a href="/en/insights/">Blog</a></li>
+              <li><a href="/en/insights/?category=vision2030">Vision 2030</a></li>
+              <li><a href="/en/insights/?category=ai">Artificial Intelligence</a></li>
+              <li><a href="/en/insights/?category=cybersecurity">Cybersecurity</a></li>
             </ul>
           </div>
           <div class="footer-col">
-            <h4>الاتصال</h4>
+            <h4>Contact</h4>
             <ul>
-              <li>الرياض، السعودية</li>
+              <li>Riyadh, Saudi Arabia</li>
               <li><a href="tel:+966112222222">+966 11 2222 2222</a></li>
               <li><a href="mailto:sales@infraai-dx.co">sales@infraai-dx.co</a></li>
               <li><a href="https://linkedin.com">LinkedIn</a></li>
@@ -827,10 +851,10 @@ const currentYear = new Date().getFullYear();
         </div>
 
         <div class="footer-bottom">
-          <p>&copy; {currentYear} InfraAI Digital Solutions. جميع الحقوق محفوظة.</p>
+          <p>&copy; {currentYear} InfraAI Digital Solutions. All rights reserved.</p>
           <div style="display: flex; gap: var(--space-12);">
-            <a href="/privacy/" style="text-decoration: none; color: var(--ink-500);">سياسة الخصوصية</a>
-            <a href="/terms/" style="text-decoration: none; color: var(--ink-500);">الشروط والأحكام</a>
+            <a href="/en/privacy/" style="text-decoration: none; color: var(--ink-500);">Privacy Policy</a>
+            <a href="/en/terms/" style="text-decoration: none; color: var(--ink-500);">Terms & Conditions</a>
           </div>
         </div>
       </div>
@@ -852,7 +876,7 @@ const currentYear = new Date().getFullYear();
         e.preventDefault();
         const email = e.target.querySelector('input[type="email"]').value;
         // TODO: Integrate with Web3Forms
-        alert(`شكراً! سيتم التواصل معك على ${email}`);
+        alert(`Thanks! We'll contact you at ${email}`);
       });
     </script>
   </body>
