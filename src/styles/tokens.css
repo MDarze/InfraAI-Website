@@ -87,15 +87,15 @@
   /*
    * --font-arabic   Arabic display + body. IBM Plex Sans Arabic is
    *                 optimised for Arabic script at all sizes.
-   * --font-display  Latin display headings. General Sans: clean,
-   *                 geometric, purposeful — NOT Inter, NOT Roboto.
+   * --font-display  Latin display headings. Using IBM Plex Sans temporarily
+   *                 (will switch to General Sans once downloaded from Fontshare)
    * --font-body     Latin body text. IBM Plex Sans pairs with the
    *                 Arabic sibling naturally (same family DNA).
    * --font-mono     Technical callouts, DX-OS interface elements,
    *                 code snippets. JetBrains Mono: legible at small sizes.
    */
   --font-arabic:  'IBM Plex Sans Arabic', 'Noto Sans Arabic', system-ui, sans-serif;
-  --font-display: 'General Sans', 'IBM Plex Sans', system-ui, sans-serif;
+  --font-display: 'IBM Plex Sans', system-ui, sans-serif;
   --font-body:    'IBM Plex Sans', system-ui, sans-serif;
   --font-mono:    'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
 }
