@@ -1,0 +1,772 @@
+---
+import '../../styles/global.css';
+
+// Color tokens (extracted from tokens.css)
+const colors = {
+  canvas: '#FFFFFF',
+  subtle: '#FAFAFA',
+  elevated: '#F5F5F7',
+  deep: '#0A0A0B',
+  ink900: '#0A0A0B',
+  ink700: '#3A3A42',
+  ink500: '#6B6B74',
+  ink300: '#C8C8CF',
+  ink100: '#EDEDEF',
+  ink000: '#FFFFFF',
+  accent: '#00B894',
+  accentHover: '#009E7F',
+  accentDark: '#00D4A8',
+  warn: '#E8622C',
+  success: '#0FA968',
+  info: '#0070F3',
+};
+
+const typeSamples = {
+  ar: {
+    hero: 'نستشير. ننفّذ. نحوّل.',
+    h1: 'عنوان المستوى الأول',
+    h2: 'عنوان المستوى الثاني',
+    h3: 'عنوان المستوى الثالث',
+    body: 'هذا نص في متن الصفحة. يستخدم IBM Plex Sans Arabic للحصول على أفضل قراءة بالعربية.',
+    small: 'نص صغير للتسميات والشروح',
+  },
+  en: {
+    hero: 'We consult. We execute. We transform.',
+    h1: 'First Level Heading',
+    h2: 'Second Level Heading',
+    h3: 'Third Level Heading',
+    body: 'This is body text using IBM Plex Sans for optimal readability in English.',
+    small: 'Small text for labels and captions',
+  },
+};
+
+const spacing = [
+  { name: 'space-1', value: '4px', css: '--space-1' },
+  { name: 'space-2', value: '8px', css: '--space-2' },
+  { name: 'space-3', value: '12px', css: '--space-3' },
+  { name: 'space-4', value: '16px', css: '--space-4' },
+  { name: 'space-6', value: '24px', css: '--space-6' },
+  { name: 'space-8', value: '32px', css: '--space-8' },
+  { name: 'space-12', value: '48px', css: '--space-12' },
+  { name: 'space-16', value: '64px', css: '--space-16' },
+];
+
+const easing = [
+  { name: 'ease-out (primary)', value: 'cubic-bezier(0.16, 1, 0.3, 1)', use: 'Reveals, entrances, hovers' },
+  { name: 'ease-inout (secondary)', value: 'cubic-bezier(0.4, 0, 0.2, 1)', use: 'Color, opacity, background' },
+  { name: 'ease-micro (spring)', value: 'cubic-bezier(0.34, 1.04, 0.64, 1)', use: 'Micro-interactions only' },
+];
+---
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>InfraAI Design System</title>
+    <style>
+      /* Styleguide-specific styles */
+      .ds-section {
+        padding: var(--section-y-mobile);
+        border-bottom: var(--divider-width) solid var(--divider-color);
+      }
+
+      @media (min-width: 768px) {
+        .ds-section {
+          padding: var(--section-y-tablet);
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .ds-section {
+          padding: var(--section-y-desktop);
+        }
+      }
+
+      .ds-section h2 {
+        margin-block-end: var(--space-12);
+      }
+
+      /* Color swatches */
+      .color-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: var(--space-8);
+      }
+
+      .color-swatch {
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        box-shadow: var(--shadow-card);
+      }
+
+      .color-swatch-preview {
+        width: 100%;
+        aspect-ratio: 16/9;
+        border-bottom: 1px solid var(--divider-color);
+      }
+
+      .color-swatch-info {
+        padding: var(--space-4);
+        background: var(--bg-canvas);
+        font-size: var(--fs-small);
+      }
+
+      .color-swatch-name {
+        font-weight: var(--fw-semi);
+        color: var(--ink-900);
+        margin-block-end: var(--space-1);
+      }
+
+      .color-swatch-hex {
+        font-family: var(--font-mono);
+        color: var(--ink-500);
+        font-size: var(--fs-micro);
+      }
+
+      /* Type samples */
+      .type-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: var(--space-12);
+      }
+
+      @media (max-width: 767px) {
+        .type-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .type-column h3 {
+        margin-block-end: var(--space-8);
+        font-weight: var(--fw-medium);
+        text-transform: uppercase;
+        font-size: var(--fs-small);
+        letter-spacing: var(--ls-caps);
+        color: var(--ink-500);
+      }
+
+      .type-sample {
+        margin-block-end: var(--space-12);
+        padding-block-end: var(--space-6);
+        border-bottom: 1px solid var(--divider-color);
+      }
+
+      .type-sample:last-child {
+        margin-block-end: 0;
+        padding-block-end: 0;
+        border-bottom: none;
+      }
+
+      .type-label {
+        font-size: var(--fs-micro);
+        text-transform: uppercase;
+        letter-spacing: var(--ls-caps);
+        color: var(--ink-500);
+        margin-block-end: var(--space-2);
+      }
+
+      /* Button variants */
+      .button-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: var(--space-12);
+      }
+
+      .button-group {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-4);
+      }
+
+      .button-group-label {
+        font-weight: var(--fw-semi);
+        font-size: var(--fs-small);
+        color: var(--ink-500);
+        text-transform: uppercase;
+        letter-spacing: var(--ls-caps);
+        margin-block-end: var(--space-4);
+      }
+
+      /* Primary button */
+      .btn-primary {
+        height: var(--btn-height);
+        padding: 0 var(--btn-px);
+        border-radius: var(--radius-pill);
+        background: var(--accent);
+        color: var(--ink-000);
+        font-weight: var(--fw-semi);
+        border: none;
+        cursor: pointer;
+        transition: var(--btn-transition);
+        font-size: var(--fs-body);
+      }
+
+      .btn-primary:hover {
+        background: var(--accent-hover);
+        transform: scale(1.02);
+        box-shadow: 0 4px 16px var(--accent-glow);
+      }
+
+      .btn-primary:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+      }
+
+      /* Secondary button */
+      .btn-secondary {
+        height: var(--btn-height);
+        padding: 0 var(--btn-px);
+        border-radius: var(--radius-pill);
+        background: transparent;
+        color: var(--ink-900);
+        border: 1px solid var(--ink-300);
+        font-weight: var(--fw-semi);
+        cursor: pointer;
+        transition: var(--btn-transition);
+        font-size: var(--fs-body);
+      }
+
+      .btn-secondary:hover {
+        border-color: var(--ink-500);
+        background: var(--bg-elevated);
+      }
+
+      .btn-secondary:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+      }
+
+      /* Tertiary / Ghost button */
+      .btn-ghost {
+        height: var(--btn-height);
+        padding: 0 var(--btn-px);
+        background: none;
+        border: none;
+        color: var(--ink-700);
+        font-weight: var(--fw-semi);
+        cursor: pointer;
+        text-decoration: underline;
+        text-decoration-color: transparent;
+        text-underline-offset: 4px;
+        transition: var(--btn-transition);
+        font-size: var(--fs-body);
+      }
+
+      .btn-ghost:hover {
+        color: var(--ink-900);
+        text-decoration-color: var(--accent);
+      }
+
+      .btn-ghost:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+      }
+
+      /* Card component */
+      .card-demo {
+        background: var(--card-bg);
+        border: var(--card-border-width) solid var(--card-border);
+        border-radius: var(--card-radius);
+        padding: var(--card-padding);
+        box-shadow: var(--card-shadow);
+        transition: var(--card-transition);
+        max-width: 400px;
+      }
+
+      .card-demo:hover {
+        border-color: var(--card-border-hover);
+        box-shadow: var(--card-shadow-hover);
+        transform: var(--card-lift);
+      }
+
+      .card-demo h3 {
+        margin-block-end: var(--space-4);
+      }
+
+      .card-demo p {
+        font-size: var(--fs-small);
+        color: var(--ink-500);
+      }
+
+      .card-hover-note {
+        margin-block-start: var(--space-6);
+        padding: var(--space-4);
+        background: var(--bg-subtle);
+        border-radius: var(--radius-sm);
+        font-size: var(--fs-micro);
+        color: var(--ink-500);
+        font-style: italic;
+      }
+
+      /* Motion demo */
+      .motion-demo {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: var(--space-12);
+      }
+
+      .easing-demo {
+        border: 1px solid var(--divider-color);
+        border-radius: var(--radius-lg);
+        padding: var(--space-8);
+      }
+
+      .easing-label {
+        font-weight: var(--fw-semi);
+        font-size: var(--fs-small);
+        margin-block-end: var(--space-3);
+        color: var(--ink-900);
+      }
+
+      .easing-code {
+        font-family: var(--font-mono);
+        font-size: var(--fs-micro);
+        background: var(--bg-elevated);
+        padding: var(--space-2) var(--space-3);
+        border-radius: var(--radius-xs);
+        color: var(--ink-700);
+        margin-block-end: var(--space-4);
+        overflow-x: auto;
+        word-break: break-all;
+      }
+
+      .easing-use {
+        font-size: var(--fs-micro);
+        color: var(--ink-500);
+        margin-block-end: var(--space-6);
+      }
+
+      .easing-box {
+        width: 60px;
+        height: 60px;
+        background: var(--accent);
+        border-radius: var(--radius-md);
+        margin-block-start: var(--space-4);
+        animation: ease-demo 2s infinite;
+      }
+
+      @keyframes ease-demo {
+        0%, 100% {
+          transform: translateX(0);
+        }
+        50% {
+          transform: translateX(120px);
+        }
+      }
+
+      .easing-box.out {
+        animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .easing-box.inout {
+        animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .easing-box.micro {
+        animation-timing-function: cubic-bezier(0.34, 1.04, 0.64, 1);
+      }
+
+      /* Spacing scale */
+      .spacing-grid {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-12);
+      }
+
+      .spacing-row {
+        display: flex;
+        align-items: center;
+        gap: var(--space-6);
+      }
+
+      .spacing-label {
+        min-width: 100px;
+        font-family: var(--font-mono);
+        font-size: var(--fs-small);
+        font-weight: var(--fw-semi);
+        color: var(--ink-900);
+      }
+
+      .spacing-block {
+        background: var(--accent-tint);
+        border-left: 3px solid var(--accent);
+        border-radius: var(--radius-xs);
+        min-height: 24px;
+        display: flex;
+        align-items: center;
+        padding-inline-start: var(--space-3);
+        color: var(--ink-500);
+        font-size: var(--fs-micro);
+        font-family: var(--font-mono);
+      }
+
+      /* Header & nav */
+      .ds-header {
+        padding: var(--space-12);
+        background: var(--bg-elevated);
+        border-bottom: 1px solid var(--divider-color);
+        sticky: top 0;
+        z-index: 50;
+      }
+
+      .ds-nav {
+        display: flex;
+        gap: var(--space-12);
+        flex-wrap: wrap;
+      }
+
+      .ds-nav a {
+        color: var(--ink-700);
+        font-weight: var(--fw-medium);
+        padding: var(--space-3) var(--space-4);
+        border-radius: var(--radius-sm);
+        transition: all var(--dur-fast) var(--ease-inout);
+      }
+
+      .ds-nav a:hover {
+        color: var(--ink-900);
+        background: var(--bg-subtle);
+      }
+    </style>
+  </head>
+  <body>
+    <header class="ds-header">
+      <div class="container">
+        <h1 style="margin-block-end: var(--space-6);">InfraAI Design System</h1>
+        <nav class="ds-nav">
+          <a href="#colors">Colors</a>
+          <a href="#typography">Typography</a>
+          <a href="#buttons">Buttons</a>
+          <a href="#cards">Cards</a>
+          <a href="#motion">Motion</a>
+          <a href="#spacing">Spacing</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- COLORS -->
+      <section class="ds-section" id="colors">
+        <div class="container">
+          <h2>Color Tokens</h2>
+          <p style="color: var(--ink-500); margin-block-end: var(--space-12);">
+            Light-first palette with electric teal accent. All tokens sourced from <code>src/styles/tokens.css</code>.
+          </p>
+
+          <h3 style="font-size: var(--fs-h3); margin-block-end: var(--space-6); color: var(--ink-700);">Canvas</h3>
+          <div class="color-grid" style="margin-block-end: var(--space-12);">
+            <div class="color-swatch">
+              <div class="color-swatch-preview" style="background-color: {colors.canvas}; border: 1px solid var(--divider-color);"></div>
+              <div class="color-swatch-info">
+                <div class="color-swatch-name">Canvas</div>
+                <div class="color-swatch-hex">{colors.canvas}</div>
+              </div>
+            </div>
+            <div class="color-swatch">
+              <div class="color-swatch-preview" style="background-color: {colors.subtle};"></div>
+              <div class="color-swatch-info">
+                <div class="color-swatch-name">Subtle</div>
+                <div class="color-swatch-hex">{colors.subtle}</div>
+              </div>
+            </div>
+            <div class="color-swatch">
+              <div class="color-swatch-preview" style="background-color: {colors.elevated};"></div>
+              <div class="color-swatch-info">
+                <div class="color-swatch-name">Elevated</div>
+                <div class="color-swatch-hex">{colors.elevated}</div>
+              </div>
+            </div>
+            <div class="color-swatch">
+              <div class="color-swatch-preview" style="background-color: {colors.deep};"></div>
+              <div class="color-swatch-info">
+                <div class="color-swatch-name">Deep</div>
+                <div class="color-swatch-hex">{colors.deep}</div>
+              </div>
+            </div>
+          </div>
+
+          <h3 style="font-size: var(--fs-h3); margin-block-end: var(--space-6); color: var(--ink-700);">Ink (Text & Borders)</h3>
+          <div class="color-grid" style="margin-block-end: var(--space-12);">
+            <div class="color-swatch">
+              <div class="color-swatch-preview" style="background-color: {colors.ink900};"></div>
+              <div class="color-swatch-info">
+                <div class="color-swatch-name">Ink 900</div>
+                <div class="color-swatch-hex">{colors.ink900}</div>
+              </div>
+            </div>
+            <div class="color-swatch">
+              <div class="color-swatch-preview" style="background-color: {colors.ink700};"></div>
+              <div class="color-swatch-info">
+                <div class="color-swatch-name">Ink 700</div>
+                <div class="color-swatch-hex">{colors.ink700}</div>
+              </div>
+            </div>
+            <div class="color-swatch">
+              <div class="color-swatch-preview" style="background-color: {colors.ink500};"></div>
+              <div class="color-swatch-info">
+                <div class="color-swatch-name">Ink 500</div>
+                <div class="color-swatch-hex">{colors.ink500}</div>
+              </div>
+            </div>
+            <div class="color-swatch">
+              <div class="color-swatch-preview" style="background-color: {colors.ink300};"></div>
+              <div class="color-swatch-info">
+                <div class="color-swatch-name">Ink 300</div>
+                <div class="color-swatch-hex">{colors.ink300}</div>
+              </div>
+            </div>
+            <div class="color-swatch">
+              <div class="color-swatch-preview" style="background-color: {colors.ink100};"></div>
+              <div class="color-swatch-info">
+                <div class="color-swatch-name">Ink 100</div>
+                <div class="color-swatch-hex">{colors.ink100}</div>
+              </div>
+            </div>
+          </div>
+
+          <h3 style="font-size: var(--fs-h3); margin-block-end: var(--space-6); color: var(--ink-700);">Accent & Semantic</h3>
+          <div class="color-grid">
+            <div class="color-swatch">
+              <div class="color-swatch-preview" style="background-color: {colors.accent};"></div>
+              <div class="color-swatch-info">
+                <div class="color-swatch-name">Accent</div>
+                <div class="color-swatch-hex">{colors.accent}</div>
+              </div>
+            </div>
+            <div class="color-swatch">
+              <div class="color-swatch-preview" style="background-color: {colors.accentHover};"></div>
+              <div class="color-swatch-info">
+                <div class="color-swatch-name">Accent Hover</div>
+                <div class="color-swatch-hex">{colors.accentHover}</div>
+              </div>
+            </div>
+            <div class="color-swatch">
+              <div class="color-swatch-preview" style="background-color: {colors.warn};"></div>
+              <div class="color-swatch-info">
+                <div class="color-swatch-name">Warn</div>
+                <div class="color-swatch-hex">{colors.warn}</div>
+              </div>
+            </div>
+            <div class="color-swatch">
+              <div class="color-swatch-preview" style="background-color: {colors.success};"></div>
+              <div class="color-swatch-info">
+                <div class="color-swatch-name">Success</div>
+                <div class="color-swatch-hex">{colors.success}</div>
+              </div>
+            </div>
+            <div class="color-swatch">
+              <div class="color-swatch-preview" style="background-color: {colors.info};"></div>
+              <div class="color-swatch-info">
+                <div class="color-swatch-name">Info</div>
+                <div class="color-swatch-hex">{colors.info}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TYPOGRAPHY -->
+      <section class="ds-section" id="typography">
+        <div class="container">
+          <h2>Type Scale</h2>
+          <p style="color: var(--ink-500); margin-block-end: var(--space-12);">
+            Modular scale (ratio 1.25). Arabic and English shown side-by-side with respective font families and optical adjustments.
+          </p>
+
+          <div class="type-grid">
+            <!-- Arabic -->
+            <div class="type-column">
+              <h3>Arabic (IBM Plex Sans Arabic)</h3>
+
+              <div class="type-sample">
+                <div class="type-label">Hero</div>
+                <div style="font-size: var(--fs-hero); line-height: var(--lh-hero); font-weight: var(--fw-semi); color: var(--ink-900);">
+                  {typeSamples.ar.hero}
+                </div>
+              </div>
+
+              <div class="type-sample">
+                <div class="type-label">H1</div>
+                <h1 style="font-size: var(--fs-h1);">{typeSamples.ar.h1}</h1>
+              </div>
+
+              <div class="type-sample">
+                <div class="type-label">H2</div>
+                <h2 style="font-size: var(--fs-h2);">{typeSamples.ar.h2}</h2>
+              </div>
+
+              <div class="type-sample">
+                <div class="type-label">H3</div>
+                <h3 style="font-size: var(--fs-h3);">{typeSamples.ar.h3}</h3>
+              </div>
+
+              <div class="type-sample">
+                <div class="type-label">Body</div>
+                <p style="font-size: var(--fs-body);">{typeSamples.ar.body}</p>
+              </div>
+
+              <div class="type-sample">
+                <div class="type-label">Small</div>
+                <p style="font-size: var(--fs-small); color: var(--ink-500);">{typeSamples.ar.small}</p>
+              </div>
+            </div>
+
+            <!-- English -->
+            <div class="type-column">
+              <h3>English (General Sans + IBM Plex Sans)</h3>
+
+              <div class="type-sample">
+                <div class="type-label">Hero</div>
+                <div style="font-size: var(--fs-hero); line-height: var(--lh-hero); font-weight: var(--fw-semi); color: var(--ink-900); font-family: var(--font-display);">
+                  {typeSamples.en.hero}
+                </div>
+              </div>
+
+              <div class="type-sample">
+                <div class="type-label">H1</div>
+                <h1 style="font-size: var(--fs-h1); font-family: var(--font-display);">{typeSamples.en.h1}</h1>
+              </div>
+
+              <div class="type-sample">
+                <div class="type-label">H2</div>
+                <h2 style="font-size: var(--fs-h2); font-family: var(--font-display);">{typeSamples.en.h2}</h2>
+              </div>
+
+              <div class="type-sample">
+                <div class="type-label">H3</div>
+                <h3 style="font-size: var(--fs-h3); font-family: var(--font-display);">{typeSamples.en.h3}</h3>
+              </div>
+
+              <div class="type-sample">
+                <div class="type-label">Body</div>
+                <p style="font-size: var(--fs-body); font-family: var(--font-body);">{typeSamples.en.body}</p>
+              </div>
+
+              <div class="type-sample">
+                <div class="type-label">Small</div>
+                <p style="font-size: var(--fs-small); color: var(--ink-500); font-family: var(--font-body);">{typeSamples.en.small}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- BUTTONS -->
+      <section class="ds-section" id="buttons">
+        <div class="container">
+          <h2>Button Variants</h2>
+          <p style="color: var(--ink-500); margin-block-end: var(--space-12);">
+            Three button styles: primary (action), secondary (alternative), tertiary (ghost). All responsive and accessible.
+          </p>
+
+          <div class="button-grid">
+            <div>
+              <div class="button-group-label">Primary</div>
+              <div class="button-group">
+                <button class="btn-primary">احجز تقييم</button>
+                <button class="btn-primary">Book Assessment</button>
+                <span style="font-size: var(--fs-micro); color: var(--ink-500);">Action, emphasis. Accent fill.</span>
+              </div>
+            </div>
+
+            <div>
+              <div class="button-group-label">Secondary</div>
+              <div class="button-group">
+                <button class="btn-secondary">استكشف المزيد</button>
+                <button class="btn-secondary">Learn More</button>
+                <span style="font-size: var(--fs-micro); color: var(--ink-500);">Alternative. Outlined.</span>
+              </div>
+            </div>
+
+            <div>
+              <div class="button-group-label">Tertiary / Ghost</div>
+              <div class="button-group">
+                <button class="btn-ghost">اقرأ المزيد →</button>
+                <button class="btn-ghost">Read More →</button>
+                <span style="font-size: var(--fs-micro); color: var(--ink-500);">Text + underline on hover.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CARDS -->
+      <section class="ds-section" id="cards">
+        <div class="container">
+          <h2>Card Component</h2>
+          <p style="color: var(--ink-500); margin-block-end: var(--space-12);">
+            Elevated background with subtle lift and border glow on hover. No shadow by default; reveals on interaction.
+          </p>
+
+          <div class="card-demo">
+            <h3>DX-OS Assessment</h3>
+            <p>
+              Our flagship 5-day digital transformation assessment. Includes workflows, pain points, digitization
+              maturity, Vision 2030 alignment scoring, and AI recommendations.
+            </p>
+            <div class="card-hover-note">
+              💡 Hover to see: lift (translateY -2px), shadow elevation, accent border fade-in.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MOTION & EASING -->
+      <section class="ds-section" id="motion">
+        <div class="container">
+          <h2>Motion & Easing</h2>
+          <p style="color: var(--ink-500); margin-block-end: var(--space-12);">
+            Two approved easing curves. No bouncy spring (one micro exception). Watch the teal boxes animate.
+          </p>
+
+          <div class="motion-demo">
+            {easing.map((curve) => (
+              <div class="easing-demo">
+                <div class="easing-label">{curve.name}</div>
+                <div class="easing-code">{curve.value}</div>
+                <div class="easing-use">{curve.use}</div>
+                <div class={`easing-box ${curve.name.includes('out') ? 'out' : curve.name.includes('inout') ? 'inout' : 'micro'}`}></div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- SPACING -->
+      <section class="ds-section" id="spacing">
+        <div class="container">
+          <h2>Spacing Scale</h2>
+          <p style="color: var(--ink-500); margin-block-end: var(--space-12);">
+            8px base grid. All spacing derived from this scale. Blocks show visual size.
+          </p>
+
+          <div class="spacing-grid">
+            {spacing.map((s) => (
+              <div class="spacing-row">
+                <div class="spacing-label">{s.name}</div>
+                <div class="spacing-block" style={{ width: s.value }}>
+                  {s.value}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <section class="ds-section" style="background: var(--bg-subtle); text-align: center;">
+        <div class="container">
+          <p style="color: var(--ink-500); margin-block-end: var(--space-6);">
+            Design system tokens live in <code style="background: var(--bg-elevated); padding: var(--space-2) var(--space-3); border-radius: var(--radius-xs);">src/styles/tokens.css</code>
+          </p>
+          <p style="font-size: var(--fs-small); color: var(--ink-500);">
+            All colors, typography, spacing, motion, and component values are CSS custom properties.
+            <br />
+            No hardcoded values anywhere in the codebase.
+          </p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
