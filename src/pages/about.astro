@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import BreadcrumbBar from '../components/BreadcrumbBar.astro';
 ---
 
 <!DOCTYPE html>
@@ -19,6 +20,7 @@ import '../styles/global.css';
       .value-card { background: var(--bg-elevated); padding: var(--space-8); border-radius: var(--radius-lg); }
       .value-card h3 { margin-block-end: var(--space-3); }
       .footer { background: var(--bg-elevated); border-top: 1px solid var(--divider-color); padding: var(--space-16) var(--gutter-sm); }
+      .brand-name { font-family: var(--font-display); font-style: normal; letter-spacing: var(--ls-body); }
     </style>
   </head>
 
@@ -32,9 +34,11 @@ import '../styles/global.css';
       </div>
     </nav>
 
+    <BreadcrumbBar pageTitle="عن الشركة" lang="ar" />
+
     <section class="section">
       <div class="container">
-        <h1 style="margin-block-end: var(--space-8);">عن InfraAI</h1>
+        <h1 style="margin-block-end: var(--space-8);">عن <span lang="en" class="brand-name">InfraAI</span></h1>
         <p style="font-size: var(--fs-h3); color: var(--ink-700); margin-block-end: var(--space-12); line-height: var(--lh-relaxed);">
           نحن استشاريون وشركاء تنفيذ حقيقيون في التحول الرقمي. منذ تأسيسنا، ساعدنا أكثر من 50 شركة في المملكة العربية السعودية والخليج على تحقيق أهدافهم الرقمية.
         </p>
@@ -48,7 +52,7 @@ import '../styles/global.css';
           <div>
             <h3>البداية</h3>
             <p style="color: var(--ink-700); line-height: var(--lh-relaxed); margin-block-end: var(--space-12);">
-              تأسست InfraAI بحلم بسيط: إنشاء شركة استشارات حقيقية تقوم بالفعل بتنفيذ التحول الرقمي، لا الحديث عنه فقط.
+              تأسست <span lang="en" class="brand-name">InfraAI</span> بحلم بسيط: إنشاء شركة استشارات حقيقية تقوم بالفعل بتنفيذ التحول الرقمي، لا الحديث عنه فقط.
             </p>
           </div>
           <div>

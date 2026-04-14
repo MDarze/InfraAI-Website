@@ -1,0 +1,35 @@
+---
+/**
+ * IconWrapper.astro
+ * Wraps SVG icons in a styled circular container with accent color
+ */
+
+interface Props {
+  children?: any;
+}
+
+const { children } = Astro.props;
+---
+
+<div class="icon-wrapper">
+  <slot />
+</div>
+
+<style>
+  .icon-wrapper {
+    width: 56px;
+    height: 56px;
+    background: var(--accent-tint);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .icon-wrapper :global(svg) {
+    width: 32px;
+    height: 32px;
+  }
+</style>

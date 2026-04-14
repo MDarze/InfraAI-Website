@@ -1,5 +1,10 @@
 ---
 import '../styles/global.css';
+import IconWrapper from '../components/IconWrapper.astro';
+import IconAI from '../components/icons/IconAI.astro';
+import IconDX from '../components/icons/IconDX.astro';
+import IconCyber from '../components/icons/IconCyber.astro';
+import IconReseller from '../components/icons/IconReseller.astro';
 
 const currentYear = new Date().getFullYear();
 ---
@@ -25,14 +30,16 @@ const currentYear = new Date().getFullYear();
         top: 0;
         z-index: var(--nav-z);
         height: var(--nav-height);
-        background: var(--nav-bg);
-        backdrop-filter: var(--nav-blur);
-        border-bottom: 1px solid transparent;
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        border-bottom: 2px solid transparent;
         transition: border-color var(--dur-base) var(--ease-inout);
       }
 
       .nav.scrolled {
-        border-bottom-color: var(--nav-border-color);
+        border-bottom-color: var(--divider-color);
+        background: rgba(255, 255, 255, 0.95);
       }
 
       .nav-content {
@@ -54,6 +61,11 @@ const currentYear = new Date().getFullYear();
         font-weight: var(--fw-semi);
         color: var(--ink-900);
         text-decoration: none;
+        transition: color var(--dur-fast) var(--ease-inout);
+      }
+
+      .logo:hover {
+        color: var(--accent);
       }
 
       .nav-links {
@@ -68,18 +80,22 @@ const currentYear = new Date().getFullYear();
         font-weight: var(--nav-link-weight);
         color: var(--nav-link-color);
         text-decoration: none;
+        position: relative;
         transition: color var(--dur-fast) var(--ease-inout);
+        border-bottom: 2px solid transparent;
+        padding-bottom: 2px;
       }
 
       .nav-link:hover {
-        color: var(--nav-link-hover-color);
+        color: var(--accent);
+        border-bottom-color: var(--accent);
       }
 
       .lang-switch {
         background: var(--bg-elevated);
-        border: none;
+        border: 1.5px solid var(--ink-300);
         padding: var(--space-2) var(--space-4);
-        border-radius: var(--radius-sm);
+        border-radius: 999px;
         font-size: var(--fs-small);
         font-weight: var(--fw-medium);
         color: var(--ink-900);
@@ -88,8 +104,55 @@ const currentYear = new Date().getFullYear();
       }
 
       .lang-switch:hover {
-        background: var(--bg-deep);
-        color: var(--ink-000);
+        background: transparent;
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+
+      /* Buttons */
+      .btn-primary,
+      .btn-secondary {
+        height: var(--btn-height);
+        padding: 0 var(--btn-px);
+        border-radius: var(--btn-radius);
+        font-size: var(--btn-size);
+        font-weight: var(--btn-weight);
+        transition: var(--btn-transition);
+        cursor: pointer;
+        border: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-2);
+        white-space: nowrap;
+      }
+
+      .btn-primary {
+        background: var(--btn-primary-bg);
+        color: var(--btn-primary-text);
+        box-shadow: var(--btn-primary-shadow);
+      }
+
+      .btn-primary:hover {
+        background: var(--btn-primary-bg-hover);
+        box-shadow: var(--btn-primary-shadow-hover);
+        transform: translateY(-2px);
+      }
+
+      .btn-primary:active {
+        transform: translateY(0);
+      }
+
+      .btn-secondary {
+        background: var(--btn-secondary-bg);
+        border: 1.5px solid var(--btn-secondary-border);
+        color: var(--btn-secondary-text);
+      }
+
+      .btn-secondary:hover {
+        background: var(--btn-secondary-bg-hover);
+        border-color: var(--btn-secondary-border-hover);
+        color: var(--accent);
       }
 
       /* Hero */
@@ -107,7 +170,28 @@ const currentYear = new Date().getFullYear();
         content: '';
         position: absolute;
         inset: 0;
-        background: var(--hero-glow);
+        background: radial-gradient(
+          ellipse 800px 600px at 100% 50%,
+          rgba(0, 184, 148, 0.12) 0%,
+          transparent 70%
+        );
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      .hero::after {
+        content: '';
+        position: absolute;
+        top: -200px;
+        right: -200px;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(
+          circle,
+          rgba(0, 184, 148, 0.08) 0%,
+          transparent 70%
+        );
+        border-radius: 50%;
         z-index: 0;
         pointer-events: none;
       }
@@ -164,9 +248,23 @@ const currentYear = new Date().getFullYear();
       /* Pillars Grid */
       .pillars {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: var(--space-12);
+        grid-template-columns: 1fr;
+        gap: var(--space-16);
         margin-block-end: var(--space-32);
+      }
+
+      @media (min-width: 768px) {
+        .pillars {
+          grid-template-columns: 1fr 1fr;
+          gap: var(--space-20);
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .pillars {
+          grid-template-columns: 1fr 1fr;
+          gap: var(--space-24);
+        }
       }
 
       .pillar-card {
@@ -174,25 +272,19 @@ const currentYear = new Date().getFullYear();
         border: 1px solid var(--card-border);
         border-radius: var(--card-radius);
         padding: var(--card-padding);
-        transition: var(--card-transition);
+        transition: all var(--dur-base) var(--ease-inout);
+        display: flex;
+        flex-direction: column;
       }
 
       .pillar-card:hover {
-        border-color: var(--card-border-hover);
-        box-shadow: var(--card-shadow-hover);
-        transform: var(--card-lift);
+        border-color: var(--accent);
+        box-shadow: 0 8px 32px rgba(0, 184, 148, 0.12);
+        transform: translateY(-4px);
       }
 
-      .pillar-icon {
-        width: 64px;
-        height: 64px;
-        background: var(--accent-tint);
-        border-radius: var(--radius-lg);
-        display: flex;
-        align-items: center;
-        justify-content: center;
+      .pillar-card > :first-child {
         margin-block-end: var(--space-6);
-        font-size: 2rem;
       }
 
       .pillar-card h3 {
@@ -577,25 +669,33 @@ const currentYear = new Date().getFullYear();
         <h2 style="margin-block-end: var(--space-12);">أربع مجالات للتميز</h2>
         <div class="pillars">
           <div class="pillar-card">
-            <div class="pillar-icon">🤖</div>
+            <IconWrapper>
+              <IconAI />
+            </IconWrapper>
             <h3>تحول الذكاء الاصطناعي</h3>
             <p>تقييم الجاهزية، اكتشاف حالات الاستخدام، وبناء وكلاء ذكية مخصصة.</p>
             <a href="/services/ai/" class="pillar-link">اعرف المزيد ←</a>
           </div>
           <div class="pillar-card">
-            <div class="pillar-icon">⚙️</div>
+            <IconWrapper>
+              <IconDX />
+            </IconWrapper>
             <h3>التحول الرقمي</h3>
             <p>DX-OS: تقييم 5 أيام شامل + تصميم التشغيل الرقمي الجديد.</p>
             <a href="/dxos/" class="pillar-link">اعرف المزيد ←</a>
           </div>
           <div class="pillar-card">
-            <div class="pillar-icon">🔐</div>
+            <IconWrapper>
+              <IconCyber />
+            </IconWrapper>
             <h3>الأمن السيبراني</h3>
             <p>اختبارات الاختراق، العمليات الأمنية، الامتثال للأنظمة.</p>
             <a href="/services/cybersecurity/" class="pillar-link">اعرف المزيد ←</a>
           </div>
           <div class="pillar-card">
-            <div class="pillar-icon">🤝</div>
+            <IconWrapper>
+              <IconReseller />
+            </IconWrapper>
             <h3>برنامج التوزيع</h3>
             <p>كن شريكنا في التوزيع. منصات برمجيات وأدوات أمن سيبراني.</p>
             <a href="/partners/" class="pillar-link">اعرف المزيد ←</a>
