@@ -1,0 +1,27 @@
+---
+/**
+ * IconCyber.astro
+ * Shield with circuit line for cybersecurity
+ */
+---
+
+<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" class="icon-cyber">
+  <!-- Shield outline -->
+  <path d="M 16 4 L 8 8 L 8 16 C 8 23 16 28 16 28 C 16 28 24 23 24 16 L 24 8 Z"
+        fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+
+  <!-- Circuit line inside shield -->
+  <path d="M 12 14 L 16 14 L 16 18 L 20 18"
+        fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+
+  <!-- Small connection dots -->
+  <circle cx="12" cy="14" r="1.5" fill="currentColor" />
+  <circle cx="20" cy="18" r="1.5" fill="currentColor" />
+</svg>
+
+<style>
+  :global(.icon-cyber) {
+    width: 32px;
+    height: 32px;
+  }
+</style>

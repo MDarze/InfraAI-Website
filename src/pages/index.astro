@@ -1,5 +1,10 @@
 ---
 import '../styles/global.css';
+import IconWrapper from '../components/IconWrapper.astro';
+import IconAI from '../components/icons/IconAI.astro';
+import IconDX from '../components/icons/IconDX.astro';
+import IconCyber from '../components/icons/IconCyber.astro';
+import IconReseller from '../components/icons/IconReseller.astro';
 
 const BASE_URL = import.meta.env.BASE_URL;
 const currentYear = new Date().getFullYear();
@@ -663,25 +668,33 @@ const currentYear = new Date().getFullYear();
         <h2 style="margin-block-end: var(--space-12);">أربع مجالات للتميز</h2>
         <div class="pillars">
           <div class="pillar-card">
-            <div class="pillar-icon">🤖</div>
+            <IconWrapper>
+              <IconAI />
+            </IconWrapper>
             <h3>تحول الذكاء الاصطناعي</h3>
             <p>تقييم الجاهزية، اكتشاف حالات الاستخدام، وبناء وكلاء ذكية مخصصة.</p>
             <a href={`${BASE_URL}/services/ai/`} class="pillar-link">اعرف المزيد ←</a>
           </div>
           <div class="pillar-card">
-            <div class="pillar-icon">⚙️</div>
+            <IconWrapper>
+              <IconDX />
+            </IconWrapper>
             <h3>التحول الرقمي</h3>
             <p>DX-OS: تقييم 5 أيام شامل + تصميم التشغيل الرقمي الجديد.</p>
             <a href={`${BASE_URL}/dxos/`} class="pillar-link">اعرف المزيد ←</a>
           </div>
           <div class="pillar-card">
-            <div class="pillar-icon">🔐</div>
+            <IconWrapper>
+              <IconCyber />
+            </IconWrapper>
             <h3>الأمن السيبراني</h3>
             <p>اختبارات الاختراق، العمليات الأمنية، الامتثال للأنظمة.</p>
             <a href={`${BASE_URL}/services/cybersecurity/`} class="pillar-link">اعرف المزيد ←</a>
           </div>
           <div class="pillar-card">
-            <div class="pillar-icon">🤝</div>
+            <IconWrapper>
+              <IconReseller />
+            </IconWrapper>
             <h3>برنامج التوزيع</h3>
             <p>كن شريكنا في التوزيع. منصات برمجيات وأدوات أمن سيبراني.</p>
             <a href={`${BASE_URL}/partners/`} class="pillar-link">اعرف المزيد ←</a>

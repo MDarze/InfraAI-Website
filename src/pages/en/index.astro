@@ -1,5 +1,10 @@
 ---
 import '../../styles/global.css';
+import IconWrapper from '../../components/IconWrapper.astro';
+import IconAI from '../../components/icons/IconAI.astro';
+import IconDX from '../../components/icons/IconDX.astro';
+import IconCyber from '../../components/icons/IconCyber.astro';
+import IconReseller from '../../components/icons/IconReseller.astro';
 
 const BASE_URL = import.meta.env.BASE_URL;
 const currentYear = new Date().getFullYear();
@@ -641,25 +646,33 @@ const currentYear = new Date().getFullYear();
         <h2 style="margin-block-end: var(--space-12);">Four Areas of Expertise</h2>
         <div class="pillars">
           <div class="pillar-card">
-            <div class="pillar-icon">🤖</div>
+            <IconWrapper>
+              <IconAI />
+            </IconWrapper>
             <h3>AI Transformation</h3>
             <p>Readiness assessment, use-case discovery, custom AI agents and GenAI integration.</p>
             <a href="/en/services/ai/" class="pillar-link">Learn More →</a>
           </div>
           <div class="pillar-card">
-            <div class="pillar-icon">⚙️</div>
+            <IconWrapper>
+              <IconDX />
+            </IconWrapper>
             <h3>Digital Transformation</h3>
             <p>DX-OS: comprehensive 5-day assessment plus digital operating model design.</p>
             <a href="/en/dxos/" class="pillar-link">Learn More →</a>
           </div>
           <div class="pillar-card">
-            <div class="pillar-icon">🔐</div>
+            <IconWrapper>
+              <IconCyber />
+            </IconWrapper>
             <h3>Cybersecurity</h3>
             <p>Penetration testing, security operations, compliance readiness and red-team exercises.</p>
             <a href="/en/services/cybersecurity/" class="pillar-link">Learn More →</a>
           </div>
           <div class="pillar-card">
-            <div class="pillar-icon">🤝</div>
+            <IconWrapper>
+              <IconReseller />
+            </IconWrapper>
             <h3>Reseller Program</h3>
             <p>Become our partner. Enterprise software licenses and cybersecurity tools.</p>
             <a href="/en/partners/" class="pillar-link">Learn More →</a>
