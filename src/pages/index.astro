@@ -5,6 +5,7 @@ import IconAI from '../components/icons/IconAI.astro';
 import IconDX from '../components/icons/IconDX.astro';
 import IconCyber from '../components/icons/IconCyber.astro';
 import IconReseller from '../components/icons/IconReseller.astro';
+import DXOSTimeline from '../components/DXOSTimeline.astro';
 
 const BASE_URL = import.meta.env.BASE_URL;
 const currentYear = new Date().getFullYear();
@@ -746,11 +747,8 @@ const currentYear = new Date().getFullYear();
               </div>
             </div>
           </div>
-          <div style="background: var(--accent-glow); border-radius: var(--radius-lg); min-height: 400px; display: flex; align-items: center; justify-content: center; color: var(--ink-000);">
-            <div style="text-align: center;">
-              <div style="font-size: 4rem; margin-block-end: var(--space-6);">📊</div>
-              <p>رسم توضيحي لنظام DX-OS</p>
-            </div>
+          <div style="background: var(--bg-deep); border-radius: var(--radius-lg); min-height: 400px; display: flex; align-items: center; justify-content: center; padding: var(--space-12);">
+            <DXOSTimeline />
           </div>
         </div>
       </div>
