@@ -38,3 +38,4 @@ Thumbs.db
 
 # Git bundles (distribution artifacts)
 *.bundle
+*.bundle.b64
