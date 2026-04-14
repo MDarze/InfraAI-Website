@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 
+const BASE_URL = import.meta.env.BASE_URL;
 const currentYear = new Date().getFullYear();
 ---
 
@@ -537,13 +538,13 @@ const currentYear = new Date().getFullYear();
     <!-- NAV -->
     <nav class="nav" id="nav">
       <div class="container nav-content">
-        <a href="/" class="logo">InfraAI</a>
+        <a href={`${BASE_URL}/`} class="logo">InfraAI</a>
         <ul class="nav-links">
           <li><a href="#services" class="nav-link">الخدمات</a></li>
-          <li><a href="/about" class="nav-link">عن الشركة</a></li>
-          <li><a href="/insights" class="nav-link">المعرفة</a></li>
-          <li><a href="/contact" class="nav-link">التواصل</a></li>
-          <li><a href="/en/" class="lang-switch">EN</a></li>
+          <li><a href={`${BASE_URL}/about`} class="nav-link">عن الشركة</a></li>
+          <li><a href={`${BASE_URL}/insights`} class="nav-link">المعرفة</a></li>
+          <li><a href={`${BASE_URL}/contact`} class="nav-link">التواصل</a></li>
+          <li><a href={`${BASE_URL}/en/`} class="lang-switch">EN</a></li>
         </ul>
       </div>
     </nav>
@@ -580,25 +581,25 @@ const currentYear = new Date().getFullYear();
             <div class="pillar-icon">🤖</div>
             <h3>تحول الذكاء الاصطناعي</h3>
             <p>تقييم الجاهزية، اكتشاف حالات الاستخدام، وبناء وكلاء ذكية مخصصة.</p>
-            <a href="/services/ai/" class="pillar-link">اعرف المزيد ←</a>
+            <a href={`${BASE_URL}/services/ai/`} class="pillar-link">اعرف المزيد ←</a>
           </div>
           <div class="pillar-card">
             <div class="pillar-icon">⚙️</div>
             <h3>التحول الرقمي</h3>
             <p>DX-OS: تقييم 5 أيام شامل + تصميم التشغيل الرقمي الجديد.</p>
-            <a href="/dxos/" class="pillar-link">اعرف المزيد ←</a>
+            <a href={`${BASE_URL}/dxos/`} class="pillar-link">اعرف المزيد ←</a>
           </div>
           <div class="pillar-card">
             <div class="pillar-icon">🔐</div>
             <h3>الأمن السيبراني</h3>
             <p>اختبارات الاختراق، العمليات الأمنية، الامتثال للأنظمة.</p>
-            <a href="/services/cybersecurity/" class="pillar-link">اعرف المزيد ←</a>
+            <a href={`${BASE_URL}/services/cybersecurity/`} class="pillar-link">اعرف المزيد ←</a>
           </div>
           <div class="pillar-card">
             <div class="pillar-icon">🤝</div>
             <h3>برنامج التوزيع</h3>
             <p>كن شريكنا في التوزيع. منصات برمجيات وأدوات أمن سيبراني.</p>
-            <a href="/partners/" class="pillar-link">اعرف المزيد ←</a>
+            <a href={`${BASE_URL}/partners/`} class="pillar-link">اعرف المزيد ←</a>
           </div>
         </div>
       </div>
@@ -617,7 +618,7 @@ const currentYear = new Date().getFullYear();
             <p>
               يتوافق بنسبة 100% مع رؤية 2030. من 10,000 ريال.
             </p>
-            <a href="/dxos/" class="btn-primary" style="display: inline-block;">
+            <a href={`${BASE_URL}/dxos/`} class="btn-primary" style="display: inline-block;">
               اعرف المزيد عن DX-OS
             </a>
 
@@ -686,19 +687,19 @@ const currentYear = new Date().getFullYear();
       <div class="container">
         <h2 style="margin-block-end: var(--space-12);">خدماتنا الأساسية</h2>
         <div class="services-grid">
-          <a href="/services/ai/" class="service-teaser">
+          <a href={`${BASE_URL}/services/ai/`} class="service-teaser">
             <h4>تحول الذكاء الاصطناعي</h4>
             <p>تقييم الجاهزية والتكامل والأتمتة الذكية</p>
           </a>
-          <a href="/dxos/" class="service-teaser">
+          <a href={`${BASE_URL}/dxos/`} class="service-teaser">
             <h4>DX-OS التقييم الشامل</h4>
             <p>تقييم 5 أيام شامل للتحول الرقمي</p>
           </a>
-          <a href="/services/cybersecurity/" class="service-teaser">
+          <a href={`${BASE_URL}/services/cybersecurity/`} class="service-teaser">
             <h4>الأمن السيبراني</h4>
             <p>اختبارات الاختراق والعمليات الأمنية</p>
           </a>
-          <a href="/partners/" class="service-teaser">
+          <a href={`${BASE_URL}/partners/`} class="service-teaser">
             <h4>برنامج التوزيع</h4>
             <p>توزيع المنصات والحلول البرمجية</p>
           </a>
@@ -717,7 +718,7 @@ const currentYear = new Date().getFullYear();
               <span class="insight-category">التحول الرقمي</span>
               <h3>5 خطوات للبدء في رحلة التحول الرقمي</h3>
               <p>دليل عملي لقادة الأعمال الذين يريدون تسريع تحولهم الرقمي.</p>
-              <a href="/insights/5-steps-digital-transformation/" class="insight-link">اقرأ المقالة →</a>
+              <a href={`${BASE_URL}/insights/5-steps-digital-transformation/`} class="insight-link">اقرأ المقالة →</a>
             </div>
           </article>
 
@@ -727,7 +728,7 @@ const currentYear = new Date().getFullYear();
               <span class="insight-category">الذكاء الاصطناعي</span>
               <h3>كيف تحول الذكاء الاصطناعي الصناعات التقليدية</h3>
               <p>نظرة عميقة على تطبيقات الذكاء الاصطناعي في القطاع الإنشائي والصناعي.</p>
-              <a href="/insights/ai-transformation-industries/" class="insight-link">اقرأ المقالة →</a>
+              <a href={`${BASE_URL}/insights/ai-transformation-industries/`} class="insight-link">اقرأ المقالة →</a>
             </div>
           </article>
 
@@ -737,12 +738,12 @@ const currentYear = new Date().getFullYear();
               <span class="insight-category">الأمن السيبراني</span>
               <h3>الامتثال للمعايير الأمنية: NCA ECC</h3>
               <p>ما تحتاج لمعرفته عن معايير الأمن السيبراني الوطنية.</p>
-              <a href="/insights/nca-ecc-compliance/" class="insight-link">اقرأ المقالة →</a>
+              <a href={`${BASE_URL}/insights/nca-ecc-compliance/`} class="insight-link">اقرأ المقالة →</a>
             </div>
           </article>
         </div>
         <div style="text-align: center; margin-block-top: var(--space-12);">
-          <a href="/insights/" class="btn-secondary">عرض جميع المقالات</a>
+          <a href={`${BASE_URL}/insights/`} class="btn-secondary">عرض جميع المقالات</a>
         </div>
       </div>
     </section>
@@ -791,28 +792,28 @@ const currentYear = new Date().getFullYear();
           <div class="footer-col">
             <h4>الخدمات</h4>
             <ul>
-              <li><a href="/services/ai/">تحول الذكاء الاصطناعي</a></li>
-              <li><a href="/dxos/">DX-OS التقييم</a></li>
-              <li><a href="/services/cybersecurity/">الأمن السيبراني</a></li>
-              <li><a href="/partners/">برنامج التوزيع</a></li>
+              <li><a href={`${BASE_URL}/services/ai/`}>تحول الذكاء الاصطناعي</a></li>
+              <li><a href={`${BASE_URL}/dxos/`}>DX-OS التقييم</a></li>
+              <li><a href={`${BASE_URL}/services/cybersecurity/`}>الأمن السيبراني</a></li>
+              <li><a href={`${BASE_URL}/partners/`}>برنامج التوزيع</a></li>
             </ul>
           </div>
           <div class="footer-col">
             <h4>الشركة</h4>
             <ul>
-              <li><a href="/about/">عن InfraAI</a></li>
-              <li><a href="/portfolio/">المشاريع</a></li>
-              <li><a href="/contact/">التواصل</a></li>
+              <li><a href={`${BASE_URL}/about/`}>عن InfraAI</a></li>
+              <li><a href={`${BASE_URL}/portfolio/`}>المشاريع</a></li>
+              <li><a href={`${BASE_URL}/contact/`}>التواصل</a></li>
               <li><a href="/careers/">الوظائف</a></li>
             </ul>
           </div>
           <div class="footer-col">
             <h4>المعرفة</h4>
             <ul>
-              <li><a href="/insights/">المقالات</a></li>
-              <li><a href="/insights/?category=vision2030">رؤية 2030</a></li>
-              <li><a href="/insights/?category=ai">الذكاء الاصطناعي</a></li>
-              <li><a href="/insights/?category=cybersecurity">الأمن السيبراني</a></li>
+              <li><a href={`${BASE_URL}/insights/`}>المقالات</a></li>
+              <li><a href={`${BASE_URL}/insights/?category=vision2030`}>رؤية 2030</a></li>
+              <li><a href={`${BASE_URL}/insights/?category=ai`}>الذكاء الاصطناعي</a></li>
+              <li><a href={`${BASE_URL}/insights/?category=cybersecurity`}>الأمن السيبراني</a></li>
             </ul>
           </div>
           <div class="footer-col">
@@ -829,8 +830,8 @@ const currentYear = new Date().getFullYear();
         <div class="footer-bottom">
           <p>&copy; {currentYear} InfraAI Digital Solutions. جميع الحقوق محفوظة.</p>
           <div style="display: flex; gap: var(--space-12);">
-            <a href="/privacy/" style="text-decoration: none; color: var(--ink-500);">سياسة الخصوصية</a>
-            <a href="/terms/" style="text-decoration: none; color: var(--ink-500);">الشروط والأحكام</a>
+            <a href={`${BASE_URL}/privacy/`} style="text-decoration: none; color: var(--ink-500);">سياسة الخصوصية</a>
+            <a href={`${BASE_URL}/terms/`} style="text-decoration: none; color: var(--ink-500);">الشروط والأحكام</a>
           </div>
         </div>
       </div>

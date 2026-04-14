@@ -1,6 +1,7 @@
 ---
 import '../../styles/global.css';
 
+const BASE_URL = import.meta.env.BASE_URL;
 const currentYear = new Date().getFullYear();
 ---
 
@@ -560,13 +561,13 @@ const currentYear = new Date().getFullYear();
     <!-- NAV -->
     <nav class="nav" id="nav">
       <div class="container nav-content">
-        <a href="/en/" class="logo">InfraAI</a>
+        <a href={`${BASE_URL}/en/`} class="logo">InfraAI</a>
         <ul class="nav-links">
           <li><a href="#services" class="nav-link">Services</a></li>
           <li><a href="/en/about/" class="nav-link">About</a></li>
           <li><a href="/en/insights/" class="nav-link">Insights</a></li>
           <li><a href="/en/contact/" class="nav-link">Contact</a></li>
-          <li><a href="/" class="lang-switch">AR</a></li>
+          <li><a href={`${BASE_URL}/`} class="lang-switch">AR</a></li>
         </ul>
       </div>
     </nav>

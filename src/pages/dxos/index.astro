@@ -1,5 +1,7 @@
 ---
 import '../../styles/global.css';
+
+const BASE_URL = import.meta.env.BASE_URL;
 ---
 
 <!DOCTYPE html>
@@ -63,10 +65,10 @@ import '../../styles/global.css';
   <body>
     <nav class="nav" id="nav">
       <div class="container nav-content">
-        <a href="/" class="logo">InfraAI</a>
+        <a href={`${BASE_URL}/`} class="logo">InfraAI</a>
         <ul class="nav-links">
           <li><a href="/#services" class="nav-link">الخدمات</a></li>
-          <li><a href="/about" class="nav-link">عن الشركة</a></li>
+          <li><a href={`${BASE_URL}/about`} class="nav-link">عن الشركة</a></li>
           <li><a href="/en/dxos/" class="lang-switch">EN</a></li>
         </ul>
       </div>
@@ -214,17 +216,17 @@ import '../../styles/global.css';
           <div class="footer-col">
             <h4>الخدمات</h4>
             <ul style="list-style: none;">
-              <li style="margin-block-end: var(--space-3);"><a href="/services/ai/">تحول الذكاء الاصطناعي</a></li>
-              <li style="margin-block-end: var(--space-3);"><a href="/dxos/">DX-OS</a></li>
-              <li><a href="/services/cybersecurity/">الأمن السيبراني</a></li>
+              <li style="margin-block-end: var(--space-3);"><a href={`${BASE_URL}/services/ai/`}>تحول الذكاء الاصطناعي</a></li>
+              <li style="margin-block-end: var(--space-3);"><a href={`${BASE_URL}/dxos/`}>DX-OS</a></li>
+              <li><a href={`${BASE_URL}/services/cybersecurity/`}>الأمن السيبراني</a></li>
             </ul>
           </div>
           <div class="footer-col">
             <h4>الشركة</h4>
             <ul style="list-style: none;">
-              <li style="margin-block-end: var(--space-3);"><a href="/about/">عن InfraAI</a></li>
-              <li style="margin-block-end: var(--space-3);"><a href="/portfolio/">المشاريع</a></li>
-              <li><a href="/contact/">التواصل</a></li>
+              <li style="margin-block-end: var(--space-3);"><a href={`${BASE_URL}/about/`}>عن InfraAI</a></li>
+              <li style="margin-block-end: var(--space-3);"><a href={`${BASE_URL}/portfolio/`}>المشاريع</a></li>
+              <li><a href={`${BASE_URL}/contact/`}>التواصل</a></li>
             </ul>
           </div>
           <div class="footer-col">
