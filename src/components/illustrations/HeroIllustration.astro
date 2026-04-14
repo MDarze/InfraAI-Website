@@ -1,0 +1,69 @@
+---
+/**
+ * HeroIllustration.astro
+ * Abstract isometric grid/city representing Saudi digital infrastructure
+ * Minimal line-art style with teal accent
+ */
+---
+
+<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" class="hero-illustration">
+  <defs>
+    <style>
+      .grid-line { stroke: var(--accent); stroke-width: 1.5; }
+      .grid-accent { stroke: var(--accent); stroke-width: 2; fill: none; }
+      .grid-fill { fill: var(--accent); opacity: 0.1; }
+    </style>
+  </defs>
+
+  <!-- Background grid -->
+  <g class="grid-background">
+    <line class="grid-line" x1="50" y1="200" x2="350" y2="200" opacity="0.3"/>
+    <line class="grid-line" x1="50" y1="250" x2="350" y2="250" opacity="0.2"/>
+    <line class="grid-line" x1="50" y1="300" x2="350" y2="300" opacity="0.15"/>
+  </g>
+
+  <!-- Isometric buildings -->
+  <!-- Building 1 (left) -->
+  <g class="building-1">
+    <polygon class="grid-accent" points="80,250 80,150 130,120 130,220"/>
+    <rect class="grid-fill" x="85" y="160" width="40" height="60" opacity="0.15"/>
+    <line class="grid-line" x1="95" y1="170" x2="95" y2="210" opacity="0.4"/>
+    <line class="grid-line" x1="110" y1="170" x2="110" y2="210" opacity="0.4"/>
+  </g>
+
+  <!-- Building 2 (center, tall) -->
+  <g class="building-2">
+    <polygon class="grid-accent" points="170,300 170,100 220,70 220,300"/>
+    <rect class="grid-fill" x="175" y="120" width="40" height="170" opacity="0.2"/>
+    <line class="grid-line" x1="185" y1="140" x2="185" y2="280" opacity="0.4"/>
+    <line class="grid-line" x1="200" y1="140" x2="200" y2="280" opacity="0.4"/>
+  </g>
+
+  <!-- Building 3 (right) -->
+  <g class="building-3">
+    <polygon class="grid-accent" points="270,280 270,160 320,130 320,240"/>
+    <rect class="grid-fill" x="275" y="170" width="40" height="100" opacity="0.15"/>
+    <line class="grid-line" x1="285" y1="180" x2="285" y2="260" opacity="0.4"/>
+    <line class="grid-line" x1="300" y1="180" x2="300" y2="260" opacity="0.4"/>
+  </g>
+
+  <!-- Connecting network nodes -->
+  <circle class="grid-accent" cx="130" cy="130" r="3" fill="var(--accent)" opacity="0.6"/>
+  <circle class="grid-accent" cx="220" cy="80" r="3" fill="var(--accent)" opacity="0.6"/>
+  <circle class="grid-accent" cx="320" cy="150" r="3" fill="var(--accent)" opacity="0.6"/>
+
+  <!-- Connection lines -->
+  <line class="grid-line" x1="130" y1="130" x2="220" y2="80" opacity="0.3"/>
+  <line class="grid-line" x1="220" y1="80" x2="320" y2="150" opacity="0.3"/>
+
+  <!-- Ground line -->
+  <line class="grid-accent" x1="40" y1="320" x2="360" y2="320" opacity="0.5"/>
+</svg>
+
+<style>
+  :global(.hero-illustration) {
+    width: 100%;
+    height: auto;
+    max-width: 400px;
+  }
+</style>

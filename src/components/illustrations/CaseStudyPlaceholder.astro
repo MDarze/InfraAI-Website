@@ -1,0 +1,60 @@
+---
+/**
+ * CaseStudyPlaceholder.astro
+ * Abstract building/construction wireframe for case studies
+ */
+---
+
+<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" class="case-study-placeholder">
+  <defs>
+    <style>
+      .wireframe-line { stroke: var(--accent); stroke-width: 1.5; fill: none; }
+      .wireframe-fill { fill: var(--accent); opacity: 0.08; }
+    </style>
+  </defs>
+
+  <!-- Main building outline -->
+  <polygon class="wireframe-line wireframe-fill" points="50,100 50,250 250,250 250,100 200,50 100,50"/>
+
+  <!-- Vertical divisions -->
+  <line class="wireframe-line" x1="100" y1="100" x2="100" y2="250" opacity="0.4"/>
+  <line class="wireframe-line" x1="150" y1="100" x2="150" y2="250" opacity="0.4"/>
+  <line class="wireframe-line" x1="200" y1="100" x2="200" y2="250" opacity="0.4"/>
+
+  <!-- Horizontal divisions (floors) -->
+  <line class="wireframe-line" x1="50" y1="140" x2="250" y2="140" opacity="0.3"/>
+  <line class="wireframe-line" x1="50" y1="180" x2="250" y2="180" opacity="0.3"/>
+  <line class="wireframe-line" x1="50" y1="220" x2="250" y2="220" opacity="0.3"/>
+
+  <!-- Window cells -->
+  <rect class="wireframe-line" x="65" y="115" width="20" height="15" opacity="0.4"/>
+  <rect class="wireframe-line" x="115" y="115" width="20" height="15" opacity="0.4"/>
+  <rect class="wireframe-line" x="165" y="115" width="20" height="15" opacity="0.4"/>
+  <rect class="wireframe-line" x="215" y="115" width="20" height="15" opacity="0.4"/>
+
+  <rect class="wireframe-line" x="65" y="155" width="20" height="15" opacity="0.4"/>
+  <rect class="wireframe-line" x="115" y="155" width="20" height="15" opacity="0.4"/>
+  <rect class="wireframe-line" x="165" y="155" width="20" height="15" opacity="0.4"/>
+  <rect class="wireframe-line" x="215" y="155" width="20" height="15" opacity="0.4"/>
+
+  <rect class="wireframe-line" x="65" y="195" width="20" height="15" opacity="0.4"/>
+  <rect class="wireframe-line" x="115" y="195" width="20" height="15" opacity="0.4"/>
+  <rect class="wireframe-line" x="165" y="195" width="20" height="15" opacity="0.4"/>
+  <rect class="wireframe-line" x="215" y="195" width="20" height="15" opacity="0.4"/>
+
+  <!-- Roof accent -->
+  <polygon class="wireframe-line" points="100,50 150,30 200,50 150,70"/>
+  <line class="wireframe-line" x1="150" y1="30" x2="150" y2="70" opacity="0.5"/>
+
+  <!-- Foundation -->
+  <line class="wireframe-line" x1="40" y1="255" x2="260" y2="255" stroke-width="2"/>
+  <line class="wireframe-line" x1="45" y1="265" x2="255" y2="265" opacity="0.3"/>
+</svg>
+
+<style>
+  :global(.case-study-placeholder) {
+    width: 100%;
+    height: auto;
+    max-width: 300px;
+  }
+</style>
