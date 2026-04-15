@@ -1,9 +1,9 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
-// https://infraai-dx.com
+// https://www.infraai-dx.com (Cloudflare CDN + DNS)
 export default defineConfig({
-  site: 'https://infraai-dx.com',
+  site: 'https://www.infraai-dx.com',
   output: 'static',
 
   integrations: [
