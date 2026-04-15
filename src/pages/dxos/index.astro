@@ -1,8 +1,6 @@
 ---
 import '../../styles/global.css';
-import BreadcrumbBar from '../components/BreadcrumbBar.astro';
-
-const BASE_URL = import.meta.env.BASE_URL;
+import BreadcrumbBar from '../../components/BreadcrumbBar.astro';
 ---
 
 <!DOCTYPE html>
@@ -77,6 +75,8 @@ const BASE_URL = import.meta.env.BASE_URL;
         </ul>
       </div>
     </nav>
+
+    <BreadcrumbBar pageTitle="DX-OS" lang="ar" />
 
     <section class="hero">
       <div class="container hero-content">

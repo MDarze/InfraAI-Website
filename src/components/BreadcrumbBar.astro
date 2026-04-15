@@ -1,60 +1,50 @@
 ---
 /**
  * BreadcrumbBar.astro
- *
- * Breadcrumb navigation component for sub-pages
- * Usage:
- *   <BreadcrumbBar pageTitle="عن الشركة" lang="ar" />
+ * Navigation breadcrumb component for sub-pages
  */
 
 interface Props {
-  pageTitle: string;  // Current page title
-  lang?: string;      // "ar" or "en" (defaults to detecting from html)
+  pageTitle: string;
+  lang?: string;
 }
 
-const { pageTitle, lang = "ar" } = Astro.props;
-const BASE_URL = import.meta.env.BASE_URL;
-const isArabic = lang === "ar";
-const homeUrl = isArabic ? `${BASE_URL}/` : `${BASE_URL}/en/`;
-const homeLabel = isArabic ? "الصفحة الرئيسية" : "Home";
-const arrowChar = isArabic ? "←" : "→";
+const { pageTitle, lang = 'ar' } = Astro.props;
+const homeLabel = lang === 'ar' ? 'الرئيسية' : 'Home';
+const homeHref = lang === 'ar' ? '/' : '/en/';
 ---
 
-<div class="breadcrumb-bar">
-  <div class="container breadcrumb-content">
-    <a href={homeUrl} class="breadcrumb-link">
-      InfraAI
-    </a>
-    <span class="breadcrumb-separator">{arrowChar}</span>
-    <a href={homeUrl} class="breadcrumb-link">
+<nav class="breadcrumb-bar">
+  <div class="container">
+    <a href={homeHref} class="breadcrumb-link">
+      <span class="breadcrumb-arrow">←</span>
       {homeLabel}
     </a>
-    {pageTitle && (
-      <>
-        <span class="breadcrumb-separator">/</span>
-        <span class="breadcrumb-current">{pageTitle}</span>
-      </>
-    )}
+    <span class="breadcrumb-separator">/</span>
+    <span class="breadcrumb-current">{pageTitle}</span>
   </div>
-</div>
+</nav>
 
 <style>
   .breadcrumb-bar {
-    background: var(--bg-canvas);
-    border-bottom: 1px solid var(--ink-100);
-    padding-block: var(--space-6);
+    background: var(--bg-elevated);
+    border-bottom: 1px solid var(--divider-color);
+    padding: var(--space-8) var(--gutter-sm);
   }
 
-  .breadcrumb-content {
+  .breadcrumb-bar .container {
     display: flex;
     align-items: center;
-    gap: var(--space-3);
-    flex-wrap: wrap;
+    gap: var(--space-4);
+    font-size: var(--fs-small);
+    color: var(--ink-500);
   }
 
   .breadcrumb-link {
-    font-size: var(--fs-small);
-    color: var(--ink-500);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--ink-700);
     text-decoration: none;
     transition: color var(--dur-fast) var(--ease-inout);
   }
@@ -63,14 +53,22 @@ const arrowChar = isArabic ? "←" : "→";
     color: var(--accent);
   }
 
+  .breadcrumb-arrow {
+    opacity: 0.6;
+  }
+
   .breadcrumb-separator {
-    font-size: var(--fs-small);
-    color: var(--ink-300);
+    opacity: 0.4;
   }
 
   .breadcrumb-current {
-    font-size: var(--fs-small);
-    color: var(--ink-700);
     font-weight: var(--fw-medium);
+    color: var(--ink-700);
+  }
+
+  @media (min-width: 1280px) {
+    .breadcrumb-bar {
+      padding: var(--space-8) var(--gutter-lg);
+    }
   }
 </style>

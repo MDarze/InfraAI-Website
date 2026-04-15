@@ -5,9 +5,7 @@ import IconAI from '../components/icons/IconAI.astro';
 import IconDX from '../components/icons/IconDX.astro';
 import IconCyber from '../components/icons/IconCyber.astro';
 import IconReseller from '../components/icons/IconReseller.astro';
-import DXOSTimeline from '../components/DXOSTimeline.astro';
 
-const BASE_URL = import.meta.env.BASE_URL;
 const currentYear = new Date().getFullYear();
 ---
 
@@ -25,9 +23,6 @@ const currentYear = new Date().getFullYear();
     <link rel="canonical" href="https://infraai-dx.com/" />
     <link rel="alternate" hreflang="en" href="https://infraai-dx.com/en/" />
     <title>InfraAI Digital Solutions | استشارات التحول الرقمي</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
       /* Nav */
       .nav {
@@ -35,14 +30,16 @@ const currentYear = new Date().getFullYear();
         top: 0;
         z-index: var(--nav-z);
         height: var(--nav-height);
-        background: var(--nav-bg);
-        backdrop-filter: var(--nav-blur);
-        border-bottom: 1px solid transparent;
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        border-bottom: 2px solid transparent;
         transition: border-color var(--dur-base) var(--ease-inout);
       }
 
       .nav.scrolled {
-        border-bottom-color: var(--nav-border-color);
+        border-bottom-color: var(--divider-color);
+        background: rgba(255, 255, 255, 0.95);
       }
 
       .nav-content {
@@ -64,6 +61,11 @@ const currentYear = new Date().getFullYear();
         font-weight: var(--fw-semi);
         color: var(--ink-900);
         text-decoration: none;
+        transition: color var(--dur-fast) var(--ease-inout);
+      }
+
+      .logo:hover {
+        color: var(--accent);
       }
 
       .nav-links {
@@ -74,58 +76,83 @@ const currentYear = new Date().getFullYear();
       }
 
       .nav-link {
-        font-size: 0.9375rem;
-        font-weight: 500;
-        color: var(--ink-700);
+        font-size: var(--nav-link-size);
+        font-weight: var(--nav-link-weight);
+        color: var(--nav-link-color);
         text-decoration: none;
+        position: relative;
         transition: color var(--dur-fast) var(--ease-inout);
-        cursor: pointer;
-        border: none;
-        background: none;
-        padding: 0;
-        outline: none;
+        border-bottom: 2px solid transparent;
+        padding-bottom: 2px;
       }
 
       .nav-link:hover {
         color: var(--accent);
-        text-decoration: underline;
-        text-decoration-color: var(--accent);
-        text-underline-offset: 4px;
-      }
-
-      .nav-link:focus {
-        outline: none;
-      }
-
-      .nav-link:focus-visible {
-        outline: 2px solid var(--accent);
-        outline-offset: 4px;
+        border-bottom-color: var(--accent);
       }
 
       .lang-switch {
-        border: 1px solid var(--ink-300);
+        background: var(--bg-elevated);
+        border: 1.5px solid var(--ink-300);
+        padding: var(--space-2) var(--space-4);
         border-radius: 999px;
-        padding: 4px 12px;
-        background: transparent;
-        font-size: 0.875rem;
-        font-weight: 500;
-        color: var(--ink-700);
+        font-size: var(--fs-small);
+        font-weight: var(--fw-medium);
+        color: var(--ink-900);
         cursor: pointer;
         transition: all var(--dur-fast) var(--ease-inout);
       }
 
       .lang-switch:hover {
+        background: transparent;
         border-color: var(--accent);
         color: var(--accent);
       }
 
-      .lang-switch:focus {
-        outline: none;
+      /* Buttons */
+      .btn-primary,
+      .btn-secondary {
+        height: var(--btn-height);
+        padding: 0 var(--btn-px);
+        border-radius: var(--btn-radius);
+        font-size: var(--btn-size);
+        font-weight: var(--btn-weight);
+        transition: var(--btn-transition);
+        cursor: pointer;
+        border: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-2);
+        white-space: nowrap;
       }
 
-      .lang-switch:focus-visible {
-        outline: 2px solid var(--accent);
-        outline-offset: 2px;
+      .btn-primary {
+        background: var(--btn-primary-bg);
+        color: var(--btn-primary-text);
+        box-shadow: var(--btn-primary-shadow);
+      }
+
+      .btn-primary:hover {
+        background: var(--btn-primary-bg-hover);
+        box-shadow: var(--btn-primary-shadow-hover);
+        transform: translateY(-2px);
+      }
+
+      .btn-primary:active {
+        transform: translateY(0);
+      }
+
+      .btn-secondary {
+        background: var(--btn-secondary-bg);
+        border: 1.5px solid var(--btn-secondary-border);
+        color: var(--btn-secondary-text);
+      }
+
+      .btn-secondary:hover {
+        background: var(--btn-secondary-bg-hover);
+        border-color: var(--btn-secondary-border-hover);
+        color: var(--accent);
       }
 
       /* Hero */
@@ -143,7 +170,28 @@ const currentYear = new Date().getFullYear();
         content: '';
         position: absolute;
         inset: 0;
-        background: var(--hero-glow);
+        background: radial-gradient(
+          ellipse 800px 600px at 100% 50%,
+          rgba(0, 184, 148, 0.12) 0%,
+          transparent 70%
+        );
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      .hero::after {
+        content: '';
+        position: absolute;
+        top: -200px;
+        right: -200px;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(
+          circle,
+          rgba(0, 184, 148, 0.08) 0%,
+          transparent 70%
+        );
+        border-radius: 50%;
         z-index: 0;
         pointer-events: none;
       }
@@ -155,12 +203,9 @@ const currentYear = new Date().getFullYear();
       }
 
       .hero h1 {
-        display: block;
         font-size: var(--fs-hero);
         line-height: var(--lh-hero);
-        margin-block-end: 0;
-        font-weight: 600;
-        letter-spacing: 0;
+        margin-block-end: var(--space-8);
         animation: fadeInUp 0.8s var(--ease-out) forwards;
         opacity: 0;
       }
@@ -189,59 +234,6 @@ const currentYear = new Date().getFullYear();
         opacity: 0;
       }
 
-      /* Buttons */
-      .btn-primary {
-        background: var(--accent);
-        color: white;
-        border-radius: 999px;
-        height: 48px;
-        padding-inline: 24px;
-        font-weight: 500;
-        border: none;
-        cursor: pointer;
-        transition: all 200ms var(--ease-inout);
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        text-decoration: none;
-      }
-
-      .btn-primary:hover {
-        background: var(--accent-hover);
-        transform: scale(1.02);
-      }
-
-      .btn-primary:focus-visible {
-        outline: 2px solid var(--accent);
-        outline-offset: 2px;
-      }
-
-      .btn-secondary {
-        background: transparent;
-        border: 1px solid var(--ink-300);
-        color: var(--ink-700);
-        border-radius: 999px;
-        height: 48px;
-        padding-inline: 24px;
-        font-weight: 500;
-        cursor: pointer;
-        transition: all 200ms var(--ease-inout);
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        text-decoration: none;
-      }
-
-      .btn-secondary:hover {
-        border-color: var(--accent);
-        color: var(--accent);
-      }
-
-      .btn-secondary:focus-visible {
-        outline: 2px solid var(--accent);
-        outline-offset: 2px;
-      }
-
       @keyframes fadeInUp {
         from {
           opacity: 0;
@@ -256,9 +248,23 @@ const currentYear = new Date().getFullYear();
       /* Pillars Grid */
       .pillars {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: var(--space-12);
+        grid-template-columns: 1fr;
+        gap: var(--space-16);
         margin-block-end: var(--space-32);
+      }
+
+      @media (min-width: 768px) {
+        .pillars {
+          grid-template-columns: 1fr 1fr;
+          gap: var(--space-20);
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .pillars {
+          grid-template-columns: 1fr 1fr;
+          gap: var(--space-24);
+        }
       }
 
       .pillar-card {
@@ -266,25 +272,19 @@ const currentYear = new Date().getFullYear();
         border: 1px solid var(--card-border);
         border-radius: var(--card-radius);
         padding: var(--card-padding);
-        transition: var(--card-transition);
+        transition: all var(--dur-base) var(--ease-inout);
+        display: flex;
+        flex-direction: column;
       }
 
       .pillar-card:hover {
-        border-color: var(--card-border-hover);
-        box-shadow: var(--card-shadow-hover);
-        transform: var(--card-lift);
+        border-color: var(--accent);
+        box-shadow: 0 8px 32px rgba(0, 184, 148, 0.12);
+        transform: translateY(-4px);
       }
 
-      .pillar-icon {
-        width: 64px;
-        height: 64px;
-        background: var(--accent-tint);
-        border-radius: var(--radius-lg);
-        display: flex;
-        align-items: center;
-        justify-content: center;
+      .pillar-card > :first-child {
         margin-block-end: var(--space-6);
-        font-size: 2rem;
       }
 
       .pillar-card h3 {
@@ -629,13 +629,13 @@ const currentYear = new Date().getFullYear();
     <!-- NAV -->
     <nav class="nav" id="nav">
       <div class="container nav-content">
-        <a href={`${BASE_URL}/`} class="logo">InfraAI</a>
+        <a href="/" class="logo">InfraAI</a>
         <ul class="nav-links">
           <li><a href="#services" class="nav-link">الخدمات</a></li>
-          <li><a href={`${BASE_URL}/about`} class="nav-link">عن الشركة</a></li>
-          <li><a href={`${BASE_URL}/insights`} class="nav-link">المعرفة</a></li>
-          <li><a href={`${BASE_URL}/contact`} class="nav-link">التواصل</a></li>
-          <li><a href={`${BASE_URL}/en/`} class="lang-switch">EN</a></li>
+          <li><a href="/about" class="nav-link">عن الشركة</a></li>
+          <li><a href="/insights" class="nav-link">المعرفة</a></li>
+          <li><a href="/contact" class="nav-link">التواصل</a></li>
+          <li><a href="/en/" class="lang-switch">EN</a></li>
         </ul>
       </div>
     </nav>
@@ -674,7 +674,7 @@ const currentYear = new Date().getFullYear();
             </IconWrapper>
             <h3>تحول الذكاء الاصطناعي</h3>
             <p>تقييم الجاهزية، اكتشاف حالات الاستخدام، وبناء وكلاء ذكية مخصصة.</p>
-            <a href={`${BASE_URL}/services/ai/`} class="pillar-link">اعرف المزيد ←</a>
+            <a href="/services/ai/" class="pillar-link">اعرف المزيد ←</a>
           </div>
           <div class="pillar-card">
             <IconWrapper>
@@ -682,7 +682,7 @@ const currentYear = new Date().getFullYear();
             </IconWrapper>
             <h3>التحول الرقمي</h3>
             <p>DX-OS: تقييم 5 أيام شامل + تصميم التشغيل الرقمي الجديد.</p>
-            <a href={`${BASE_URL}/dxos/`} class="pillar-link">اعرف المزيد ←</a>
+            <a href="/dxos/" class="pillar-link">اعرف المزيد ←</a>
           </div>
           <div class="pillar-card">
             <IconWrapper>
@@ -690,7 +690,7 @@ const currentYear = new Date().getFullYear();
             </IconWrapper>
             <h3>الأمن السيبراني</h3>
             <p>اختبارات الاختراق، العمليات الأمنية، الامتثال للأنظمة.</p>
-            <a href={`${BASE_URL}/services/cybersecurity/`} class="pillar-link">اعرف المزيد ←</a>
+            <a href="/services/cybersecurity/" class="pillar-link">اعرف المزيد ←</a>
           </div>
           <div class="pillar-card">
             <IconWrapper>
@@ -698,7 +698,7 @@ const currentYear = new Date().getFullYear();
             </IconWrapper>
             <h3>برنامج التوزيع</h3>
             <p>كن شريكنا في التوزيع. منصات برمجيات وأدوات أمن سيبراني.</p>
-            <a href={`${BASE_URL}/partners/`} class="pillar-link">اعرف المزيد ←</a>
+            <a href="/partners/" class="pillar-link">اعرف المزيد ←</a>
           </div>
         </div>
       </div>
@@ -717,7 +717,7 @@ const currentYear = new Date().getFullYear();
             <p>
               يتوافق بنسبة 100% مع رؤية 2030. من 10,000 ريال.
             </p>
-            <a href={`${BASE_URL}/dxos/`} class="btn-primary" style="display: inline-block;">
+            <a href="/dxos/" class="btn-primary" style="display: inline-block;">
               اعرف المزيد عن DX-OS
             </a>
 
@@ -747,8 +747,11 @@ const currentYear = new Date().getFullYear();
               </div>
             </div>
           </div>
-          <div style="background: var(--bg-deep); border-radius: var(--radius-lg); min-height: 400px; display: flex; align-items: center; justify-content: center; padding: var(--space-12);">
-            <DXOSTimeline />
+          <div style="background: var(--accent-glow); border-radius: var(--radius-lg); min-height: 400px; display: flex; align-items: center; justify-content: center; color: var(--ink-000);">
+            <div style="text-align: center;">
+              <div style="font-size: 4rem; margin-block-end: var(--space-6);">📊</div>
+              <p>رسم توضيحي لنظام DX-OS</p>
+            </div>
           </div>
         </div>
       </div>
@@ -783,19 +786,19 @@ const currentYear = new Date().getFullYear();
       <div class="container">
         <h2 style="margin-block-end: var(--space-12);">خدماتنا الأساسية</h2>
         <div class="services-grid">
-          <a href={`${BASE_URL}/services/ai/`} class="service-teaser">
+          <a href="/services/ai/" class="service-teaser">
             <h4>تحول الذكاء الاصطناعي</h4>
             <p>تقييم الجاهزية والتكامل والأتمتة الذكية</p>
           </a>
-          <a href={`${BASE_URL}/dxos/`} class="service-teaser">
+          <a href="/dxos/" class="service-teaser">
             <h4>DX-OS التقييم الشامل</h4>
             <p>تقييم 5 أيام شامل للتحول الرقمي</p>
           </a>
-          <a href={`${BASE_URL}/services/cybersecurity/`} class="service-teaser">
+          <a href="/services/cybersecurity/" class="service-teaser">
             <h4>الأمن السيبراني</h4>
             <p>اختبارات الاختراق والعمليات الأمنية</p>
           </a>
-          <a href={`${BASE_URL}/partners/`} class="service-teaser">
+          <a href="/partners/" class="service-teaser">
             <h4>برنامج التوزيع</h4>
             <p>توزيع المنصات والحلول البرمجية</p>
           </a>
@@ -814,7 +817,7 @@ const currentYear = new Date().getFullYear();
               <span class="insight-category">التحول الرقمي</span>
               <h3>5 خطوات للبدء في رحلة التحول الرقمي</h3>
               <p>دليل عملي لقادة الأعمال الذين يريدون تسريع تحولهم الرقمي.</p>
-              <a href={`${BASE_URL}/insights/5-steps-digital-transformation/`} class="insight-link">اقرأ المقالة →</a>
+              <a href="/insights/5-steps-digital-transformation/" class="insight-link">اقرأ المقالة →</a>
             </div>
           </article>
 
@@ -824,7 +827,7 @@ const currentYear = new Date().getFullYear();
               <span class="insight-category">الذكاء الاصطناعي</span>
               <h3>كيف تحول الذكاء الاصطناعي الصناعات التقليدية</h3>
               <p>نظرة عميقة على تطبيقات الذكاء الاصطناعي في القطاع الإنشائي والصناعي.</p>
-              <a href={`${BASE_URL}/insights/ai-transformation-industries/`} class="insight-link">اقرأ المقالة →</a>
+              <a href="/insights/ai-transformation-industries/" class="insight-link">اقرأ المقالة →</a>
             </div>
           </article>
 
@@ -834,12 +837,12 @@ const currentYear = new Date().getFullYear();
               <span class="insight-category">الأمن السيبراني</span>
               <h3>الامتثال للمعايير الأمنية: NCA ECC</h3>
               <p>ما تحتاج لمعرفته عن معايير الأمن السيبراني الوطنية.</p>
-              <a href={`${BASE_URL}/insights/nca-ecc-compliance/`} class="insight-link">اقرأ المقالة →</a>
+              <a href="/insights/nca-ecc-compliance/" class="insight-link">اقرأ المقالة →</a>
             </div>
           </article>
         </div>
         <div style="text-align: center; margin-block-top: var(--space-12);">
-          <a href={`${BASE_URL}/insights/`} class="btn-secondary">عرض جميع المقالات</a>
+          <a href="/insights/" class="btn-secondary">عرض جميع المقالات</a>
         </div>
       </div>
     </section>
@@ -888,28 +891,28 @@ const currentYear = new Date().getFullYear();
           <div class="footer-col">
             <h4>الخدمات</h4>
             <ul>
-              <li><a href={`${BASE_URL}/services/ai/`}>تحول الذكاء الاصطناعي</a></li>
-              <li><a href={`${BASE_URL}/dxos/`}>DX-OS التقييم</a></li>
-              <li><a href={`${BASE_URL}/services/cybersecurity/`}>الأمن السيبراني</a></li>
-              <li><a href={`${BASE_URL}/partners/`}>برنامج التوزيع</a></li>
+              <li><a href="/services/ai/">تحول الذكاء الاصطناعي</a></li>
+              <li><a href="/dxos/">DX-OS التقييم</a></li>
+              <li><a href="/services/cybersecurity/">الأمن السيبراني</a></li>
+              <li><a href="/partners/">برنامج التوزيع</a></li>
             </ul>
           </div>
           <div class="footer-col">
             <h4>الشركة</h4>
             <ul>
-              <li><a href={`${BASE_URL}/about/`}>عن InfraAI</a></li>
-              <li><a href={`${BASE_URL}/portfolio/`}>المشاريع</a></li>
-              <li><a href={`${BASE_URL}/contact/`}>التواصل</a></li>
+              <li><a href="/about/">عن InfraAI</a></li>
+              <li><a href="/portfolio/">المشاريع</a></li>
+              <li><a href="/contact/">التواصل</a></li>
               <li><a href="/careers/">الوظائف</a></li>
             </ul>
           </div>
           <div class="footer-col">
             <h4>المعرفة</h4>
             <ul>
-              <li><a href={`${BASE_URL}/insights/`}>المقالات</a></li>
-              <li><a href={`${BASE_URL}/insights/?category=vision2030`}>رؤية 2030</a></li>
-              <li><a href={`${BASE_URL}/insights/?category=ai`}>الذكاء الاصطناعي</a></li>
-              <li><a href={`${BASE_URL}/insights/?category=cybersecurity`}>الأمن السيبراني</a></li>
+              <li><a href="/insights/">المقالات</a></li>
+              <li><a href="/insights/?category=vision2030">رؤية 2030</a></li>
+              <li><a href="/insights/?category=ai">الذكاء الاصطناعي</a></li>
+              <li><a href="/insights/?category=cybersecurity">الأمن السيبراني</a></li>
             </ul>
           </div>
           <div class="footer-col">
@@ -926,8 +929,8 @@ const currentYear = new Date().getFullYear();
         <div class="footer-bottom">
           <p>&copy; {currentYear} InfraAI Digital Solutions. جميع الحقوق محفوظة.</p>
           <div style="display: flex; gap: var(--space-12);">
-            <a href={`${BASE_URL}/privacy/`} style="text-decoration: none; color: var(--ink-500);">سياسة الخصوصية</a>
-            <a href={`${BASE_URL}/terms/`} style="text-decoration: none; color: var(--ink-500);">الشروط والأحكام</a>
+            <a href="/privacy/" style="text-decoration: none; color: var(--ink-500);">سياسة الخصوصية</a>
+            <a href="/terms/" style="text-decoration: none; color: var(--ink-500);">الشروط والأحكام</a>
           </div>
         </div>
       </div>

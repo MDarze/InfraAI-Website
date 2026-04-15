@@ -1,36 +1,39 @@
 ---
 /**
  * IconAI.astro
- * Abstract neural network node icon for AI services
+ * Neural network icon for AI/ML services
  */
 ---
 
-<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" class="icon-ai">
+<svg
+  viewBox="0 0 32 32"
+  xmlns="http://www.w3.org/2000/svg"
+  class="icon-ai"
+>
   <!-- Center node -->
-  <circle cx="16" cy="16" r="3" fill="currentColor" />
+  <circle cx="16" cy="16" r="3" fill="currentColor" opacity="0.8" />
 
   <!-- Surrounding nodes -->
-  <circle cx="10" cy="10" r="2" fill="currentColor" />
-  <circle cx="22" cy="10" r="2" fill="currentColor" />
-  <circle cx="10" cy="22" r="2" fill="currentColor" />
-  <circle cx="22" cy="22" r="2" fill="currentColor" />
-  <circle cx="16" cy="6" r="2" fill="currentColor" />
-  <circle cx="16" cy="26" r="2" fill="currentColor" />
+  <circle cx="16" cy="5" r="2" fill="currentColor" opacity="0.6" />
+  <circle cx="25" cy="10" r="2" fill="currentColor" opacity="0.6" />
+  <circle cx="25" cy="22" r="2" fill="currentColor" opacity="0.6" />
+  <circle cx="16" cy="27" r="2" fill="currentColor" opacity="0.6" />
+  <circle cx="7" cy="22" r="2" fill="currentColor" opacity="0.6" />
+  <circle cx="7" cy="10" r="2" fill="currentColor" opacity="0.6" />
 
   <!-- Connection lines -->
-  <line x1="16" y1="16" x2="10" y2="10" stroke="currentColor" stroke-width="1.5" />
-  <line x1="16" y1="16" x2="22" y2="10" stroke="currentColor" stroke-width="1.5" />
-  <line x1="16" y1="16" x2="10" y2="22" stroke="currentColor" stroke-width="1.5" />
-  <line x1="16" y1="16" x2="22" y2="22" stroke="currentColor" stroke-width="1.5" />
-  <line x1="16" y1="16" x2="16" y2="6" stroke="currentColor" stroke-width="1.5" />
-  <line x1="16" y1="16" x2="16" y2="26" stroke="currentColor" stroke-width="1.5" />
+  <line x1="16" y1="16" x2="16" y2="5" stroke="currentColor" stroke-width="1" opacity="0.4" />
+  <line x1="16" y1="16" x2="25" y2="10" stroke="currentColor" stroke-width="1" opacity="0.4" />
+  <line x1="16" y1="16" x2="25" y2="22" stroke="currentColor" stroke-width="1" opacity="0.4" />
+  <line x1="16" y1="16" x2="16" y2="27" stroke="currentColor" stroke-width="1" opacity="0.4" />
+  <line x1="16" y1="16" x2="7" y2="22" stroke="currentColor" stroke-width="1" opacity="0.4" />
+  <line x1="16" y1="16" x2="7" y2="10" stroke="currentColor" stroke-width="1" opacity="0.4" />
 </svg>
 
 <style>
-  :global(.icon-ai) {
-    width: 32px;
-    height: 32px;
-    stroke-linecap: round;
-    stroke-linejoin: round;
+  .icon-ai {
+    width: 100%;
+    height: 100%;
+    display: block;
   }
 </style>
