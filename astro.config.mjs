@@ -3,7 +3,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://www.infraai-dx.com (Cloudflare CDN + DNS)
 export default defineConfig({
-  site: 'https://www.infraai-dx.com',
+  site: 'https://infraai-dx.com',
   output: 'static',
 
   integrations: [
