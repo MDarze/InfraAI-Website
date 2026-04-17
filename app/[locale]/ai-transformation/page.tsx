@@ -14,7 +14,7 @@ function ArrowIcon() {
 
 export default function AIPage({ params: { locale } }: { params: { locale: string } }) {
   const t = useTranslations('ai')
-  const base = locale === 'ar' ? '' : '/en'
+  const base = locale === 'ar' ? '/ar' : '/en'
   const isAr = locale === 'ar'
 
   const reportItems = isAr ? [

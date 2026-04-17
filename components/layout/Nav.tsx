@@ -9,7 +9,7 @@ export default function Nav({ locale }: { locale: string }) {
   const [open, setOpen] = useState(false)
   const isAr = locale === 'ar'
   const otherLocale = isAr ? 'en' : 'ar'
-  const otherPath = isAr ? '/en' : '/'
+  const otherPath = isAr ? '/en' : '/ar'
 
   const links = [
     { href: `/${locale === 'ar' ? '' : 'en/'}`, label: t('aiTransformation'), path: 'ai-transformation' },
@@ -20,7 +20,7 @@ export default function Nav({ locale }: { locale: string }) {
     { href: `/${locale === 'ar' ? '' : 'en/'}contact`, label: t('contact'), path: 'contact' },
   ]
 
-  const base = locale === 'ar' ? '' : '/en'
+  const base = locale === 'ar' ? '/ar' : '/en'
 
   return (
     <header className="fixed top-0 inset-x-0 z-50 bg-[#FAFAF7]/90 backdrop-blur-sm border-b border-[#E8E6DF]">

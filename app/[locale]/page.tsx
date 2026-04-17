@@ -16,7 +16,7 @@ function ArrowIcon() {
 
 export default function HomePage({ params: { locale } }: { params: { locale: string } }) {
   const t = useTranslations('home')
-  const base = locale === 'ar' ? '' : '/en'
+  const base = locale === 'ar' ? '/ar' : '/en'
   const isAr = locale === 'ar'
 
   const tracks = [t('track1'), t('track2'), t('track3'), t('track4'), t('track5'), t('track6')]

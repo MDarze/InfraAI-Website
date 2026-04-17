@@ -14,7 +14,7 @@ function ArrowIcon() {
 
 export default function CyberPage({ params: { locale } }: { params: { locale: string } }) {
   const t = useTranslations('cyber')
-  const base = locale === 'ar' ? '' : '/en'
+  const base = locale === 'ar' ? '/ar' : '/en'
   const isAr = locale === 'ar'
 
   const caps = isAr ? [

@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl'
 export default function Footer({ locale }: { locale: string }) {
   const t = useTranslations('footer')
   const nav = useTranslations('nav')
-  const base = locale === 'ar' ? '' : '/en'
+  const base = locale === 'ar' ? '/ar' : '/en'
 
   const companyLinks = [
     { href: `${base}/about`, label: nav('about') },
