@@ -3,33 +3,25 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
-  # Allow manual trigger from the Actions tab
   workflow_dispatch:
 
-# Required permissions for the deploy-pages action
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Only one deployment at a time; don't cancel in-progress deployments
 concurrency:
   group: pages
   cancel-in-progress: false
 
 jobs:
-  # ─────────────────────────────────────────
-  # Build
-  # ─────────────────────────────────────────
   build:
-    name: Build Astro site
+    name: Build Next.js site
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Node.js 20
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
@@ -37,17 +29,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build with Astro
+      - name: Build
         run: npm run build
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist
+          path: ./out
 
-  # ─────────────────────────────────────────
-  # Deploy
-  # ─────────────────────────────────────────
   deploy:
     name: Deploy to GitHub Pages
     needs: build

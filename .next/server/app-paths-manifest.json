@@ -1,0 +1,12 @@
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/api/contact/route": "app/api/contact/route.js",
+  "/[locale]/contact/page": "app/[locale]/contact/page.js",
+  "/[locale]/industries/page": "app/[locale]/industries/page.js",
+  "/[locale]/insights/page": "app/[locale]/insights/page.js",
+  "/[locale]/about/page": "app/[locale]/about/page.js",
+  "/[locale]/cybersecurity/page": "app/[locale]/cybersecurity/page.js",
+  "/[locale]/ai-transformation/page": "app/[locale]/ai-transformation/page.js",
+  "/[locale]/page": "app/[locale]/page.js",
+  "/[locale]/track-record/page": "app/[locale]/track-record/page.js"
+}

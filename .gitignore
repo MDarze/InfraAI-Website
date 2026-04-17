@@ -1,5 +1,7 @@
 # Build output
 dist/
+out/
+.next/
 .astro/
 
 # Node
