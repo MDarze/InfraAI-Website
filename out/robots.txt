@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://infraai-dx.com/sitemap-index.xml
